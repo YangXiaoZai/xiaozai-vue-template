@@ -3,10 +3,12 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-// 引用ant
+// import ant-design-vue
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 Vue.use(Antd);
+
+import '@/styles/index.scss' // global css
 
 Vue.config.productionTip = false;
 
