@@ -1,0 +1,106 @@
+@charset 'utf-8';
+
+.w-percent{
+    width: 100%;
+}
+.w-half{
+    width: 50%;
+}
+.w-trisector{
+    width: 33.3%;
+}
+.text-center{
+    text-align: center;
+}
+.flex{
+    display: flex;
+}
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flex-around{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.flex-between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.border{
+    border: 1px solid #eee;
+}
+.radius{
+    border-radius: 6px;
+}
+.color-fff{
+    color: #fff;
+}
+.border-box {
+    box-sizing: border-box;
+}
+.over-auto{
+    overflow: auto;
+}
+.over-hidden{
+    overflow: hidden;
+}
+.line-1{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.flex-1{
+    flex: 1;
+}
+.flex-2{
+    flex: 2;
+}
+.h-30{
+    height: 30px;
+}
+
+// 定义常用margin、padding、font-size大小
+@for $i from 0 through 50 {
+    // 值仅支持被2或5整除
+    @if $i % 2 == 0 or $i % 5 == 0 {
+        // margin简写
+       .margin-#{$i}, .m-#{$i}{
+           margin: $i + px;
+       }
+       // padding简写
+       .padding-#{$i}, .p-#{$i}{
+           padding: $i + px;
+       }
+       // font-size值
+       .font-#{$i}{
+           font-size: $i + px;
+       }
+    }
+    //单独设置某个方向的margin和padding值
+    @each $logogram, $fullName in (l,left) (r,right) (t,top) (b,bottom) {
+        // 设置margin距离各个方向的值
+        .margin-#{$fullName}-#{$i}, .m-#{$logogram}-#{$i}{
+            margin-#{$fullName}: $i + px
+        }
+        // 设置padding距离各个方向的值
+        .padding-#{$fullName}-#{$i}, .p-#{$logogram}-#{$i}{
+            padding-#{$fullName}: $i + px ;
+        }
+    }
+}
+// 定义常用宽高
+@for $i from 10 through 600{
+    // 值仅支持被10整除
+    @if $i % 10 == 0{
+        .width-#{$i}, .w-#{$i}{
+            width: $i + px;
+        }
+        .height-#{$i}, .h-#{$i}{
+            height: $i + px;
+        }
+    }
+}
