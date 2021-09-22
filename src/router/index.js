@@ -10,6 +10,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
   },
   {
+    path: '/map',
+    name: 'map',
+    component: () => import(/* webpackChunkName: "map" */ '@/views/map/index.vue'),
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
