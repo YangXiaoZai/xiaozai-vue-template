@@ -14,6 +14,9 @@ module.exports = {
     // 'prettier/prettier': 'error',
     'no-tabs': 'off', // 禁用tab 关闭
     'no-multi-assign': 'off', // 禁止连续赋值 关闭
+    'no-shadow': 'off', // 禁止变量声明与外层作用域的变量同名
+    'no-param-reassign': 'off', 	// 禁止对 function 的参数进行重新赋值
+    'dot-notation': 'off', // 强制尽可能地使用点号
   },
   globals: {
     // 高德地图

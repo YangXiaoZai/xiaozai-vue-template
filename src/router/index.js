@@ -5,14 +5,21 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
+    path: '/login',
     name: 'login',
     component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
   },
   {
-    path: '/map',
-    name: 'map',
-    component: () => import(/* webpackChunkName: "map" */ '@/views/map/index.vue'),
+    path: '/',
+    redirect: '/map',
+    children: [
+      {
+        path: 'map',
+        component: () => import('@/views/map/index.vue'),
+        name: 'map',
+        meta: { title: '看板', icon: 'dashboard' },
+      },
+    ],
   },
   {
     path: '/about',

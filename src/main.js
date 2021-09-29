@@ -10,6 +10,8 @@ Vue.use(Antd);
 
 import '@/styles/index.scss' // global css
 
+import './permission' // 引用permission
+
 Vue.config.productionTip = false;
 
 new Vue({

@@ -25,7 +25,9 @@
 					</a-input-password>
 				</a-form-model-item>
         <a-form-model-item>
-					<a-button type="primary" block size="large" @click="login">登录</a-button>
+					<a-button type="primary" block size="large" @click="handleLogin" :loading='loading'>
+            登录
+          </a-button>
 				</a-form-model-item>
 			</a-form-model>
 
@@ -39,6 +41,7 @@ export default {
   components: {},
   data() {
     return {
+      redirect: '',
       loginFrom: {
         user: '',
         password: '',
@@ -51,14 +54,33 @@ export default {
           { required: true, message: '请输入密码', trigger: 'blur' },
         ],
       },
+      loading: false,
     };
   },
   computed: {},
+  watch: {
+    $route: {
+      handler(route) {
+        const { query } = route;
+        this.redirect = query.redirect;
+      },
+      immediate: true,
+    },
+  },
   methods: {
-    login() {
+    handleLogin() {
       this.$refs.loginFrom.validate((valid) => {
         if (valid) {
-          console.log('login success');
+          this.loading = true;
+          this.$store.dispatch('user/login')
+            .then(() => {
+              this.$router.push(this.redirect || '/');
+              this.loading = false;
+            }).catch(() => {
+              this.loading = false;
+            });
+        } else {
+          console.log('未通过验证');
         }
       });
     },
