@@ -10,16 +10,23 @@
 				:model="loginFrom"
 			>
 				<a-form-model-item prop='user'>
-					<a-input v-model="loginFrom.user" size="large" placeholder="请输入账号">
+					<a-input
+            ref='user'
+            v-model="loginFrom.user"
+            size="large"
+            placeholder="请输入账号">
 						<a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)" />
 					</a-input>
 				</a-form-model-item>
+
 				<a-form-model-item prop='password'>
 					<a-input-password
+            ref='password'
             size="large"
 						v-model="loginFrom.password"
 						type="password"
 						placeholder="请输入密码"
+            @keyup.enter.native="handleLogin"
 					>
 						<a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)" />
 					</a-input-password>
@@ -36,6 +43,7 @@
 </template>
 
 <script>
+import { setToken } from '@/utils/auth';
 
 export default {
   components: {},
@@ -72,13 +80,16 @@ export default {
       this.$refs.loginFrom.validate((valid) => {
         if (valid) {
           this.loading = true;
-          this.$store.dispatch('user/login')
-            .then(() => {
-              this.$router.push(this.redirect || '/');
-              this.loading = false;
-            }).catch(() => {
-              this.loading = false;
-            });
+          // 没有后台API支持，暂时先如此
+          setToken('admin');
+          this.$router.push(this.redirect || '/');
+
+          // this.$store.dispatch('user/login', this.loginFrom)
+          //   .then(() => {
+          //     this.$router.push(this.redirect || '/');
+          //   }).finally(() => {
+          //     this.loading = false;
+          //   });
         } else {
           console.log('未通过验证');
         }
@@ -91,7 +102,11 @@ export default {
   },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-
+    if (this.loginFrom.user === '') {
+      this.$refs.user.focus();
+    } else if (this.loginFrom.password === '') {
+      this.$refs.password.focus();
+    }
   },
   beforeCreate() {}, // 生命周期 - 创建之前
   beforeMount() {}, // 生命周期 - 挂载之前
@@ -117,7 +132,7 @@ export default {
     margin: 35px;
     border: 1px solid transparent;
     background: rgba(0,0,0,.4);
-    padding: 20px;
+    padding: 60px 30px;
   }
 }
 </style>

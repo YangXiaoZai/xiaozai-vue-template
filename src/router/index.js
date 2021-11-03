@@ -6,20 +6,20 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/login',
-    name: 'login',
+    name: 'Login',
     component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
   },
   {
     path: '/',
-    redirect: '/map',
-    children: [
-      {
-        path: 'map',
-        component: () => import('@/views/map/index.vue'),
-        name: 'map',
-        meta: { title: '看板', icon: 'dashboard' },
-      },
-    ],
+    name: 'Map',
+    component: () => import(/* webpackChunkName: "map" */'@/views/map/index.vue'),
+    // children: [
+    //   {
+    //     path: 'map',
+    //     component: () => import('@/views/map/index.vue'),
+    //     name: 'map',
+    //   },
+    // ],
   },
   {
     path: '/about',

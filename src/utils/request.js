@@ -1,4 +1,4 @@
-import { Message } from 'ant-design-vue';
+import { message } from 'ant-design-vue';
 import axios from 'axios';
 import store from '@/store';
 import { getToken } from '@/utils/auth';
@@ -30,7 +30,7 @@ service.interceptors.response.use(
     const res = response.data;
     // code 根据具体情况修改
     if (res.code !== 20000) {
-      Message.error({
+      message.error({
         content: res.message || '数据返回异常',
         duration: 5,
       });
@@ -40,7 +40,7 @@ service.interceptors.response.use(
   },
   (error) => {
     console.log('err', error);
-    Message.error({
+    message.error({
       content: error.message || '请求异常',
       duration: 5,
     });

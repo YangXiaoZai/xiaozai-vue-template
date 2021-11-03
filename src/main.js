@@ -12,7 +12,7 @@ import '@/styles/index.scss' // global css
 
 import './permission' // 引用permission
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示。
 
 new Vue({
   router,

@@ -4,5 +4,5 @@ export default function setPageTitle(pageTitle) {
   if (pageTitle) {
     return `${pageTitle} | ${title}`;
   }
-  return pageTitle;
+  return title;
 }
