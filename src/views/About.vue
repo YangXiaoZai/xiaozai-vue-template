@@ -1,28 +1,59 @@
 <template>
   <div class="about">
-    <a-button type="primary" @click="show = !show">点击查看过渡效果</a-button>
-    <transition name="fade">
+    <a-button type="primary" @click="show = !show">点击查看常见过渡</a-button>
+    <transition
+      enter-active-class='animate__animated animate__bounceIn'
+      leave-active-class='animate__animated animate__backOutRight'
+    >
       <div v-if='show'>
-        <h1>This is an about page</h1>
-        <h1>我是一段文字</h1>
+        <p>This is an about page</p>
       </div>
     </transition>
+    <h1>列表过渡</h1>
+    <a-button type="primary" @click="add" class="m-r-10">新增</a-button>
+    <!-- TODO：连续多次点击移除时，需要优化 -->
+    <a-button type="primary" @click="remove" class="m-r-10">移除</a-button>
+    <a-button type="primary" @click="shuffle">乱序</a-button>
+    <transition-group tag='p' name='fade-list' mode='out-in'
+      enter-active-class='animate__animated animate__bounceIn animate__fast'
+      leave-active-class='animate__animated animate__bounceOutRight animate__fast'
+    >
+      <span v-for="item in items" :key="item" class="list-item">{{item}}</span>
+    </transition-group>
   </div>
 </template>
 <script>
+import _ from 'lodash';
+
 export default {
   data() {
     return {
       show: true,
+      items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      num: 10,
     };
+  },
+  methods: {
+    getRandowIndex() {
+      return Math.floor(Math.random() * this.items.length);
+    },
+    add() {
+      this.items.splice(this.getRandowIndex(), 0, this.num += 1);
+    },
+    remove() {
+      this.items.splice(this.getRandowIndex(), 1);
+    },
+    shuffle() {
+      this.items = _.shuffle(this.items);
+    },
   },
 };
 </script>
 <style scoped>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+.list-item {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 20px;
+  transition: all .2s ease;
 }
 </style>
