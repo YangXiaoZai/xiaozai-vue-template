@@ -6,7 +6,7 @@ const state = {
   roles: ['admin'],
 };
 const mutations = {
-  SET_TOEKN: (state, token) => {
+  SET_TOKEN: (state, token) => {
     state.token = token;
   },
   SET_ROLES: (state, roles) => {
@@ -15,10 +15,10 @@ const mutations = {
   SET_NAME: (state, name) => {
     state.name = name;
   },
-  SET_AVATOR: (state, avator) => {
-    state.avator = avator;
+  SET_AVATAR: (state, avatar) => {
+    state.avatar = avatar;
   },
-  SET_INTRODUCITON: (state, introduction) => {
+  SET_INTRODUCTION: (state, introduction) => {
     state.introduction = introduction;
   },
 
@@ -30,7 +30,7 @@ const actions = {
       login({ user: user.trim(), password }).then((res) => {
         const { data } = res;
         const { token } = data;
-        commit('SET_TOEKN', token);
+        commit('SET_TOKEN', token);
         setToken(token);
         resolve();
       }).catch((err) => {
@@ -43,7 +43,7 @@ const actions = {
       getInfo(state.token).then((res) => {
         // 拿roles
         const {
-          roles, name, avator, introduction,
+          roles, name, avatar, introduction,
         } = res?.data;
 
         if (!roles || roles.length <= 0) {
@@ -52,8 +52,8 @@ const actions = {
 
         commit('SET_ROLES', roles);
         commit('SET_NAME', name);
-        commit('SET_AVATOR', avator);
-        commit('SET_INTRODUCITON', introduction);
+        commit('SET_AVATAR', avatar);
+        commit('SET_INTRODUCTION', introduction);
 
         resolve(roles);
       }).catch((err) => {
