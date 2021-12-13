@@ -12,24 +12,6 @@
 .text-center{
     text-align: center;
 }
-.flex{
-    display: flex;
-}
-.flex-center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.flex-around{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.flex-between{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 .border{
     border: 1px solid #eee;
 }
@@ -47,20 +29,6 @@
 }
 .over-hidden{
     overflow: hidden;
-}
-.line-1{
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-.flex-1{
-    flex: 1;
-}
-.flex-2{
-    flex: 2;
-}
-.h-30{
-    height: 30px;
 }
 
 // 定义常用margin、padding、font-size大小
@@ -103,4 +71,110 @@
             height: $i + px;
         }
     }
+}
+// 超出行数，自动显示行尾省略号，最多5行
+@for $i from 1 through 5{
+    line-#{$i}{
+        @if $i == 1 {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		} @else {
+			display: -webkit-box!important;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			word-break: break-all;
+			-webkit-line-clamp: $i;
+			-webkit-box-orient: vertical!important;
+		}
+    }
+}
+// flex相关
+@mixin flex($direction:row){
+    display: flex;
+    flex-direction: $direction;
+}
+// 主轴水平方向
+.flex,.flex-x,.flex-row{
+    @include flex
+}
+// 主轴垂直方向
+.flex-y,.flex-column{
+    @include flex('column')
+}
+// 主轴水平方向，起点在右侧
+.flex-x-reverse,.flex-row-reverse{
+    @include flex('row-reverse')
+}
+// 主轴垂直方向，起点在下侧
+.flex-y-reverse,.flex-column-reverse{
+    @include flex('column-reverse')
+}
+// 水平垂直居中
+.flex-center{
+    @include flex;
+    justify-content:center;
+    align-items:center;
+}
+// 主轴居中
+.flex-x-center{
+    @include flex;
+    justify-content: center;
+}
+// 主轴等比间距,交叉轴居中
+.flex-between-center{
+    @include flex;
+    justify-content: space-between;
+    align-items: center;
+}
+// 主轴均分间距,交叉轴居中
+.flex-around-center{
+    @include flex;
+    justify-content: space-around;
+    align-items: center;
+}
+// 主轴起点对齐
+.flex-x-start{
+    @include flex;
+    justify-content: flex-start
+}
+// 主轴终点对齐
+.flex-x-end{
+    @include flex;
+    justify-content: flex-end
+}
+// 交叉轴居中
+.flex-y-center{
+    @include flex;
+    align-items:center
+}
+// 交叉轴起点对齐
+.flex-y-start{
+    @include flex;
+    align-items: flex-start;
+}
+// 交叉轴终点对齐
+.flex-y-end{
+    @include flex;
+    align-items: flex-end;
+}
+// 交叉轴第一行文字基线对齐
+.flex-y-baseline{
+    @include flex;
+    align-items: baseline;
+}
+// 交叉轴拉伸对齐
+.flex-y-stretch{
+    @include flex;
+    align-items: stretch;
+}
+// 自动伸缩
+.flex-fill{
+    @include flex;
+    flex:auto
+}
+// 换行
+.flex-warp{
+    @include flex;
+    flex-wrap: wrap;
 }
