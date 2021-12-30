@@ -1,180 +1,225 @@
 @charset 'utf-8';
 
-.w-percent{
-    width: 100%;
+.w-percent {
+	width: 100%;
 }
-.w-half{
-    width: 50%;
+
+.w-half {
+	width: 50%;
 }
-.w-trisector{
-    width: 33.3%;
+
+.w-trisector {
+	width: 33.3%;
 }
-.text-center{
-    text-align: center;
+
+.text-center {
+	text-align: center;
 }
-.border{
-    border: 1px solid #eee;
+
+.border {
+	border: 1px solid #eee;
 }
-.radius{
-    border-radius: 6px;
+
+.radius {
+	border-radius: 6px;
 }
-.color-fff{
-    color: #fff;
+
+.color-fff {
+	color: #fff;
 }
+
 .border-box {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
-.over-auto{
-    overflow: auto;
+
+.over-auto {
+	overflow: auto;
 }
-.over-hidden{
-    overflow: hidden;
+
+.over-hidden {
+	overflow: hidden;
 }
 
 // 定义常用margin、padding、font-size大小
 @for $i from 0 through 50 {
-    // 值仅支持被2或5整除
-    @if $i % 2 == 0 or $i % 5 == 0 {
-        // margin简写
-       .margin-#{$i}, .m-#{$i}{
-           margin: $i + px;
-       }
-       // padding简写
-       .padding-#{$i}, .p-#{$i}{
-           padding: $i + px;
-       }
-       // font-size值
-       .font-#{$i}{
-           font-size: $i + px;
-       }
-    }
-    //单独设置某个方向的margin和padding值
-    @each $logogram, $fullName in (l,left) (r,right) (t,top) (b,bottom) {
-        // 设置margin距离各个方向的值
-        .margin-#{$fullName}-#{$i}, .m-#{$logogram}-#{$i}{
-            margin-#{$fullName}: $i + px
-        }
-        // 设置padding距离各个方向的值
-        .padding-#{$fullName}-#{$i}, .p-#{$logogram}-#{$i}{
-            padding-#{$fullName}: $i + px ;
-        }
-    }
+	// 值仅支持被2或5整除
+	@if $i % 2==0 or $i % 5==0 {
+		// margin简写
+		.margin-#{$i},
+		.m-#{$i} {
+			margin: $i + px;
+		}
+
+		// padding简写
+		.padding-#{$i},
+		.p-#{$i} {
+			padding: $i + px;
+		}
+
+		// font-size值
+		.font-#{$i} {
+			font-size: $i + px;
+		}
+	}
+
+	//单独设置某个方向的margin和padding值
+	@each $logogram, $fullName in (l, left) (r, right) (t, top) (b, bottom) {
+		// 设置margin距离各个方向的值
+		.margin-#{$fullName}-#{$i},
+		.m-#{$logogram}-#{$i} {
+			margin-#{$fullName}: $i + px;
+		}
+
+		// 设置padding距离各个方向的值
+		.padding-#{$fullName}-#{$i},
+		.p-#{$logogram}-#{$i} {
+			padding-#{$fullName}: $i + px;
+		}
+	}
 }
+
 // 定义常用宽高
-@for $i from 10 through 600{
-    // 值仅支持被10整除
-    @if $i % 10 == 0{
-        .width-#{$i}, .w-#{$i}{
-            width: $i + px;
-        }
-        .height-#{$i}, .h-#{$i}{
-            height: $i + px;
-        }
-    }
+@for $i from 10 through 600 {
+	// 值仅支持被10整除
+	@if $i % 10==0 {
+		.width-#{$i},
+		.w-#{$i} {
+			width: $i + px;
+		}
+
+		.height-#{$i},
+		.h-#{$i} {
+			height: $i + px;
+		}
+	}
 }
+
 // 超出行数，自动显示行尾省略号，最多5行
-@for $i from 1 through 5{
-    line-#{$i}{
-        @if $i == 1 {
+@for $i from 1 through 5 {
+	line-#{$i} {
+		@if $i==1 {
 			overflow: hidden;
 			white-space: nowrap;
 			text-overflow: ellipsis;
 		} @else {
-			display: -webkit-box!important;
+			display: -webkit-box !important;
 			overflow: hidden;
 			text-overflow: ellipsis;
 			word-break: break-all;
 			-webkit-line-clamp: $i;
-			-webkit-box-orient: vertical!important;
+			-webkit-box-orient: vertical !important;
 		}
-    }
+	}
 }
+
 // flex相关
-@mixin flex($direction:row){
-    display: flex;
-    flex-direction: $direction;
+@mixin flex($direction: row) {
+	display: flex;
+	flex-direction: $direction;
 }
+
 // 主轴水平方向
-.flex,.flex-x,.flex-row{
-    @include flex
+.flex,
+.flex-x,
+.flex-row {
+	@include flex;
 }
+
 // 主轴垂直方向
-.flex-y,.flex-column{
-    @include flex('column')
+.flex-y,
+.flex-column {
+	@include flex('column');
 }
+
 // 主轴水平方向，起点在右侧
-.flex-x-reverse,.flex-row-reverse{
-    @include flex('row-reverse')
+.flex-x-reverse,
+.flex-row-reverse {
+	@include flex('row-reverse');
 }
+
 // 主轴垂直方向，起点在下侧
-.flex-y-reverse,.flex-column-reverse{
-    @include flex('column-reverse')
+.flex-y-reverse,
+.flex-column-reverse {
+	@include flex('column-reverse');
 }
+
 // 水平垂直居中
-.flex-center{
-    @include flex;
-    justify-content:center;
-    align-items:center;
+.flex-center {
+	@include flex;
+	justify-content: center;
+	align-items: center;
 }
+
 // 主轴居中
-.flex-x-center{
-    @include flex;
-    justify-content: center;
+.flex-x-center {
+	@include flex;
+	justify-content: center;
 }
+
 // 主轴等比间距,交叉轴居中
-.flex-between-center{
-    @include flex;
-    justify-content: space-between;
-    align-items: center;
+.flex-between-center {
+	@include flex;
+	justify-content: space-between;
+	align-items: center;
 }
+
 // 主轴均分间距,交叉轴居中
-.flex-around-center{
-    @include flex;
-    justify-content: space-around;
-    align-items: center;
+.flex-around-center {
+	@include flex;
+	justify-content: space-around;
+	align-items: center;
 }
+
 // 主轴起点对齐
-.flex-x-start{
-    @include flex;
-    justify-content: flex-start
+.flex-x-start {
+	@include flex;
+	justify-content: flex-start;
 }
+
 // 主轴终点对齐
-.flex-x-end{
-    @include flex;
-    justify-content: flex-end
+.flex-x-end {
+	@include flex;
+	justify-content: flex-end;
 }
+
 // 交叉轴居中
-.flex-y-center{
-    @include flex;
-    align-items:center
+.flex-y-center {
+	@include flex;
+	align-items: center;
 }
+
 // 交叉轴起点对齐
-.flex-y-start{
-    @include flex;
-    align-items: flex-start;
+.flex-y-start {
+	@include flex;
+	align-items: flex-start;
 }
+
 // 交叉轴终点对齐
-.flex-y-end{
-    @include flex;
-    align-items: flex-end;
+.flex-y-end {
+	@include flex;
+	align-items: flex-end;
 }
+
 // 交叉轴第一行文字基线对齐
-.flex-y-baseline{
-    @include flex;
-    align-items: baseline;
+.flex-y-baseline {
+	@include flex;
+	align-items: baseline;
 }
+
 // 交叉轴拉伸对齐
-.flex-y-stretch{
-    @include flex;
-    align-items: stretch;
+.flex-y-stretch {
+	@include flex;
+	align-items: stretch;
 }
+
 // 自动伸缩
-.flex-fill{
-    @include flex;
-    flex:auto
+.flex-fill {
+	@include flex;
+	flex: auto;
 }
+
 // 换行
-.flex-warp{
-    @include flex;
-    flex-wrap: wrap;
+.flex-warp {
+	@include flex;
+	flex-wrap: wrap;
 }
