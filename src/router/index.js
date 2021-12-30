@@ -3,6 +3,8 @@ import Router from 'vue-router';
 
 // layout
 import layout from '@/layout/index.vue';
+// modules
+import nestedRouter from './modules/nested';
 
 Vue.use(Router);
 
@@ -91,6 +93,7 @@ export const constantRoutes = [
     ],
   },
   // TODO 404，401
+  nestedRouter,
 ];
 
 // 根据权限动态设置
