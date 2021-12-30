@@ -1,5 +1,6 @@
 <template>
   <div class="about">
+    <p v-html='this.$splitFloatFontSize(3.1415)'></p>
     <a-button type="primary" @click="show = !show">点击查看常见过渡</a-button>
     <transition
       enter-active-class='animate__animated animate__bounceIn'
