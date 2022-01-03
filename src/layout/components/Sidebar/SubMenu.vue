@@ -4,7 +4,8 @@
     <MsgItem :menuInfo="menuInfo" slot="title" />
     <template v-for="item in menuInfo.children">
       <MenuItem
-        v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow"
+        v-if="hasOneShowingChild(item.children,item) &&
+        (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow"
         :key="resolvePath(item.path)"
         :menu-info="item"
         :base-path="basePath"

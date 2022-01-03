@@ -10,7 +10,8 @@
         <template v-if="!item.hidden">
           <!-- <MenuItem v-if="!item.children" :key="item.path" :menu-info="item" /> -->
           <MenuItem
-            v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow"
+            v-if="hasOneShowingChild(item.children,item)
+            && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow"
             :key="item.path"
             :menu-info="item"
           />

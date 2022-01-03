@@ -49,8 +49,7 @@ const nestedRouter = {
             {
               path: 'menu2-2-1',
               name: 'Menu2-2-1',
-              component: () =>
-                import('@/views/nested/menu2/menu2-2/menu2-2-1/index.vue'),
+              component: () => import('@/views/nested/menu2/menu2-2/menu2-2-1/index.vue'),
               meta: {
                 title: '路由2-2-1',
                 icon: 'pic-center',
@@ -59,8 +58,7 @@ const nestedRouter = {
             {
               path: 'menu2-2-2',
               name: 'Menu2-2-2',
-              component: () =>
-                import('@/views/nested/menu2/menu2-2/menu2-2-2/index.vue'),
+              component: () => import('@/views/nested/menu2/menu2-2/menu2-2-2/index.vue'),
               meta: {
                 title: '路由2-2-2',
                 icon: 'pic-center',
