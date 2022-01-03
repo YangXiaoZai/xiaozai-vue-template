@@ -1,19 +1,25 @@
 <!-- sidebarIndex -->
 <template>
-  <div class='container'>
+  <div class="container">
     <!-- logo部分 -->
-    <Logo :collapsed='collapsed'></Logo>
+    <Logo :collapsed="collapsed"></Logo>
     <!-- 菜单栏 -->
-     <a-menu
-      mode="inline"
-      theme="dark"
-      :inline-collapsed="collapsed"
-    >
+    <a-menu mode="inline" theme="dark" :inline-collapsed="collapsed">
       <template v-for="item in permissionRoutes">
-        <template v-if='!item.hidden'>
-          <MenuItem v-if="!item.children" :key="item.path" :menu-info="item"
-          :base-path='item.path'></MenuItem>
-          <SubMenu v-else :key="item.path" :menu-info="item" :base-path='resolvePath(item.path)'/>
+        <!-- TODO 通过render定义菜单栏 -->
+        <template v-if="!item.hidden">
+          <!-- <MenuItem v-if="!item.children" :key="item.path" :menu-info="item" /> -->
+          <MenuItem
+            v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow"
+            :key="item.path"
+            :menu-info="item"
+          />
+          <SubMenu
+            v-else
+            :key="item.path"
+            :menu-info="item"
+            :base-path="item.path"
+          />
         </template>
       </template>
     </a-menu>
@@ -22,16 +28,18 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import path from 'path';
-import { isExternal } from '@/utils/validate';
 
 import Logo from '@/layout/components/Sidebar/Logo.vue';
 // import SidebarItem from '@/layout/components/Sidebar/SidebarItem.vue';
 import SubMenu from '@/layout/components/Sidebar/SubMenu.vue';
 import MenuItem from '@/layout/components/Sidebar/MenuItem.vue';
+import mixin from '@/layout/components/Sidebar/mixin';
 
 export default {
-  components: { Logo, SubMenu, MenuItem },
+  components: {
+    Logo, SubMenu, MenuItem,
+  },
+  mixins: [mixin],
   data() {
     return {
       collapsed: true,
@@ -55,17 +63,7 @@ export default {
   beforeDestroy() {}, // 生命周期 - 销毁之前
   destroyed() {}, // 生命周期 - 销毁完成
   activated() {}, // 如果页面有keep-alive缓存功能，这个函数会触发
-  methods: {
-    resolvePath(routePath, basePath = '') {
-      if (isExternal(routePath)) {
-        return routePath;
-      }
-      if (isExternal(basePath)) {
-        return basePath;
-      }
-      return path.resolve(basePath, routePath);
-    },
-  },
+  methods: {},
 };
 </script>
 <style scoped>

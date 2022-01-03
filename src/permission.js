@@ -26,8 +26,8 @@ router.beforeEach(async (to, from, next) => {
     } else {
       // 不是＝》查看用户角色
       // 后台返回的roles必须是一个数组形式，如['admin']
-      // const hasRoles = store.getter.roles && store.getter.roles.length > 0;
-      const hasRoles = sessionStorage.getItem('hasRoles');
+      // const hasRoles = store.getters.roles && store.getters.roles.length > 0;
+      const hasRoles = store.getters.permissionRoutes && store.getters.permissionRoutes.length > 0;
 
       if (hasRoles) {
         next();
@@ -35,9 +35,11 @@ router.beforeEach(async (to, from, next) => {
         // 1.获取用户角色
         // const { roles } = await store.dispatch('/user/getInfo');
         const roles = ['admin'];
-        sessionStorage.setItem('hasRoles', true);
         // 2.自动添加路由
-        const accessRoutes = await store.dispatch('permission/generateRoutes', roles);
+        const accessRoutes = await store.dispatch(
+          'permission/generateRoutes',
+          roles,
+        );
         router.addRoutes(accessRoutes);
         // 3.next()
 

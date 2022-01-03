@@ -6,7 +6,7 @@
     <a-layout>
       <a-layout-header></a-layout-header>
       <a-layout-content>
-         <AppMain/>
+        <AppMain />
       </a-layout-content>
       <a-layout-footer></a-layout-footer>
     </a-layout>

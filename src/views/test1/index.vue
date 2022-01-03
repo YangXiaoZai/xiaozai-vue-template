@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class='container'>test Page</div>
+  <div class="container">test Page</div>
 </template>
 
 <script>
@@ -33,6 +33,6 @@ export default {
   },
 };
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .container{}
 </style>

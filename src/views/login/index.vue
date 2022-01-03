@@ -1,45 +1,47 @@
 <!-- login -->
 <template>
-	<div class="container flex-center">
-		<div class="login-container radius">
-			<h3 class="color-fff font-28 text-center">后台管理系统登录</h3>
+  <div class="container flex-center">
+    <div class="login-container radius">
+      <h3 class="color-fff font-28 text-center">后台管理系统登录</h3>
 
-			<a-form-model
-        ref="loginFrom"
-        :rules="rules"
-				:model="loginFrom"
-			>
-				<a-form-model-item prop='user'>
-					<a-input
-            ref='user'
+      <a-form-model ref="loginFrom" :rules="rules" :model="loginFrom">
+        <a-form-model-item prop="user">
+          <a-input
+            ref="user"
             v-model="loginFrom.user"
             size="large"
-            placeholder="请输入账号">
-						<a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)" />
-					</a-input>
-				</a-form-model-item>
+            placeholder="请输入账号"
+          >
+            <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)" />
+          </a-input>
+        </a-form-model-item>
 
-				<a-form-model-item prop='password'>
-					<a-input-password
-            ref='password'
+        <a-form-model-item prop="password">
+          <a-input-password
+            ref="password"
             size="large"
-						v-model="loginFrom.password"
-						type="password"
-						placeholder="请输入密码"
+            v-model="loginFrom.password"
+            type="password"
+            placeholder="请输入密码"
             @keyup.enter.native="handleLogin"
-					>
-						<a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)" />
-					</a-input-password>
-				</a-form-model-item>
+          >
+            <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)" />
+          </a-input-password>
+        </a-form-model-item>
         <a-form-model-item>
-					<a-button type="primary" block size="large" @click="handleLogin" :loading='loading'>
+          <a-button
+            type="primary"
+            block
+            size="large"
+            @click="handleLogin"
+            :loading="loading"
+          >
             登录
           </a-button>
-				</a-form-model-item>
-			</a-form-model>
-
-		</div>
-	</div>
+        </a-form-model-item>
+      </a-form-model>
+    </div>
+  </div>
 </template>
 
 <script>

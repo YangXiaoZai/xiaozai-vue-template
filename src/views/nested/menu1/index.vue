@@ -1,4 +1,4 @@
 <!-- menu1 -->
 <template>
-  <div class='container'>menu1</div>
+  <div class="container">menu1</div>
 </template>

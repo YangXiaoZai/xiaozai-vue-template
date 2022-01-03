@@ -12,7 +12,7 @@ export const formatFloat = (num, digits = 2) => {
     return num;
   }
 
-  f = Math.round(num * (10 ** digits)) / (10 ** digits); // digits 幂
+  f = Math.round(num * 10 ** digits) / 10 ** digits; // digits 幂
   let s = f.toString();
   let rs = s.indexOf('.');
   if (rs < 0) {

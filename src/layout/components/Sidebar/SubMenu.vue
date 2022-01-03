@@ -1,14 +1,20 @@
 <!-- a-sub-menu -->
 <template>
   <a-sub-menu :key="menuInfo.path" v-bind="$props" v-on="$listeners">
-    <template slot="title">
-      <a-icon :type="menuInfo.meta.icon" /><span>{{ menuInfo.meta.title }}</span>
-    </template>
+    <MsgItem :menuInfo="menuInfo" slot="title" />
     <template v-for="item in menuInfo.children">
-      <MenuItem v-if='!item.children' :key='resolvePath(item.path)' :menu-info="item"
-      :base-path='basePath'/>
-      <SubMenu v-else :key="resolvePath(item.path)" :menu-info="item"
-      :base-path='resolvePath(item.path)'/>
+      <MenuItem
+        v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow"
+        :key="resolvePath(item.path)"
+        :menu-info="item"
+        :base-path="basePath"
+      />
+      <SubMenu
+        v-else
+        :key="resolvePath(item.path)"
+        :menu-info="item"
+        :base-path="resolvePath(item.path)"
+      />
     </template>
   </a-sub-menu>
 </template>
@@ -16,12 +22,16 @@
 <script>
 import { Menu } from 'ant-design-vue';
 import path from 'path';
-import MenuItem from '@/layout/components/Sidebar/MenuItem.vue';
 import { isExternal } from '@/utils/validate';
+
+import MenuItem from '@/layout/components/Sidebar/MenuItem.vue';
+import MsgItem from '@/layout/components/Sidebar/MsgItem.vue';
+import mixin from '@/layout/components/Sidebar/mixin';
 
 export default {
   name: 'SubMenu',
-  components: { MenuItem },
+  components: { MenuItem, MsgItem },
+  mixins: [mixin],
   // must add isSubMenu: true
   isSubMenu: true,
   props: {
@@ -58,18 +68,18 @@ export default {
   destroyed() {}, // 生命周期 - 销毁完成
   activated() {}, // 如果页面有keep-alive缓存功能，这个函数会触发
   methods: {
-    resolvePath(routePath, basePath = '') {
+    resolvePath(routePath) {
       if (isExternal(routePath)) {
         return routePath;
       }
-      if (isExternal(basePath)) {
-        return basePath;
+      if (isExternal(this.basePath)) {
+        return this.basePath;
       }
-      return path.resolve(basePath, routePath);
+      return path.resolve(this.basePath, routePath);
     },
   },
 };
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .container{}
 </style>

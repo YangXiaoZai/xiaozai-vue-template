@@ -1,7 +1,7 @@
 <!-- AppMain -->
 <template>
   <section>
-    <transition name='fade-transform' mode="out-in">
+    <transition name="fade-transform" mode="out-in">
       <router-view :key="key" />
     </transition>
   </section>
@@ -41,6 +41,6 @@ export default {
   },
 };
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .container{}
 </style>

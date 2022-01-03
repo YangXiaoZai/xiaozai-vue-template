@@ -1,6 +1,6 @@
 <!-- map页面 -->
 <template>
-  <div class='container' id='container'></div>
+  <div class="container" id="container"></div>
 </template>
 
 <script>
@@ -91,7 +91,7 @@ export default {
   activated() {}, // 如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 #container {
   width: 100vw;
   height: 100vh;

@@ -3,13 +3,13 @@
   <div class="sidebar-logo-container">
     <transition>
       <!-- 菜单收起状态 -->
-      <router-link v-if="collapsed" key="collapsed" to='/'>
-        <img v-if="logo" :src="logo" alt="" class="sidebar-logo">
+      <router-link v-if="collapsed" key="collapsed" to="/">
+        <img v-if="logo" :src="logo" alt="" class="sidebar-logo" />
         <h1 v-else class="sidebar-title">{{title}}</h1>
       </router-link>
       <!-- 菜单展开状态 -->
-      <router-link v-else key='expand' to='/'>
-        <img v-if="logo" :src="logo" alt="" class="sidebar-logo">
+      <router-link v-else key="expand" to="/">
+        <img v-if="logo" :src="logo" alt="" class="sidebar-logo" />
         <h1 class="sidebar-title">{{title}}</h1>
       </router-link>
     </transition>
@@ -54,7 +54,7 @@ export default {
   },
 };
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .container{
   .sidebar-logo{
     width: 32px;

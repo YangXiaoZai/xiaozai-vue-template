@@ -101,7 +101,8 @@ export const asyncRoutes = [
   {
     path: 'http://www.baidu.com',
     // name: 'District',
-    component: () => import(/* webpackChunkName: "map" */ '@/views/map/district.vue'),
+    component: () =>
+      import(/* webpackChunkName: "map" */ '@/views/map/district.vue'),
     meta: {
       title: '地图',
       icon: 'dashboard',
@@ -131,7 +132,8 @@ export const asyncRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
+        component: () =>
+          import(/* webpackChunkName: "about" */ '@/views/About.vue'),
         meta: {
           title: '关于',
           icon: 'dashboard',
@@ -139,7 +141,6 @@ export const asyncRoutes = [
       },
     ],
   },
-
 ];
 
 // const routes = [
@@ -192,11 +193,12 @@ export const asyncRoutes = [
 //   },
 // ];
 
-const createRouter = () => new Router({
-  // mode: 'history', // 需要服务器配置
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes,
-});
+const createRouter = () =>
+  new Router({
+    // mode: 'history', // 需要服务器配置
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes,
+  });
 
 const router = createRouter();
 

@@ -2,21 +2,21 @@
 <template>
   <a-menu-item v-bind="$props" v-on="$listeners">
     <AppLink v-if="menuInfo.meta" :to="resolvePath(menuInfo.path)">
-        <a-icon :type="menuInfo.meta.icon" />
-        <span>{{ menuInfo.meta.title }}</span>
+      <MsgItem :menuInfo="menuInfo"></MsgItem>
     </AppLink>
   </a-menu-item>
 </template>
 
 <script>
 import { Menu } from 'ant-design-vue';
-
 import path from 'path';
+
 import { isExternal } from '@/utils/validate';
 import AppLink from '@/layout/components/Sidebar/AppLink.vue';
+import MsgItem from '@/layout/components/Sidebar/MsgItem.vue';
 
 export default {
-  components: { AppLink },
+  components: { AppLink, MsgItem },
   // must add isMenuItem: true
   isMenuItem: true,
   props: {

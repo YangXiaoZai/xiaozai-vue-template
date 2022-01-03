@@ -21,44 +21,45 @@ const mutations = {
   SET_INTRODUCTION: (state, introduction) => {
     state.introduction = introduction;
   },
-
 };
 const actions = {
   login({ commit }, userInfo) {
     const { user, password } = userInfo;
     return new Promise((resolve, reject) => {
-      login({ user: user.trim(), password }).then((res) => {
-        const { data } = res;
-        const { token } = data;
-        commit('SET_TOKEN', token);
-        setToken(token);
-        resolve();
-      }).catch((err) => {
-        reject(err);
-      });
+      login({ user: user.trim(), password })
+        .then(res => {
+          const { data } = res;
+          const { token } = data;
+          commit('SET_TOKEN', token);
+          setToken(token);
+          resolve();
+        })
+        .catch(err => {
+          reject(err);
+        });
     });
   },
   getInfo({ state, commit }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then((res) => {
-        // 拿roles
-        const {
-          roles, name, avatar, introduction,
-        } = res?.data;
+      getInfo(state.token)
+        .then(res => {
+          // 拿roles
+          const { roles, name, avatar, introduction } = res?.data;
 
-        if (!roles || roles.length <= 0) {
-          reject(new Error('getInfo接口roles必须为数组'));
-        }
+          if (!roles || roles.length <= 0) {
+            reject(new Error('getInfo接口roles必须为数组'));
+          }
 
-        commit('SET_ROLES', roles);
-        commit('SET_NAME', name);
-        commit('SET_AVATAR', avatar);
-        commit('SET_INTRODUCTION', introduction);
+          commit('SET_ROLES', roles);
+          commit('SET_NAME', name);
+          commit('SET_AVATAR', avatar);
+          commit('SET_INTRODUCTION', introduction);
 
-        resolve(roles);
-      }).catch((err) => {
-        reject(err);
-      });
+          resolve(roles);
+        })
+        .catch(err => {
+          reject(err);
+        });
     });
   },
 };

@@ -1,11 +1,10 @@
 <!-- 看板模块 -->
 <template>
-  <div class='container'>test
+  <div class="container">
+    test
 
-     <router-link :to="{path:'nested/menu1'}">
-        nihao
-      </router-link>
-      <a-button type="primary" @click="test">测试</a-button>
+    <router-link :to="{path:'nested/menu1'}"> nihao </router-link>
+    <a-button type="primary" @click="test">测试</a-button>
   </div>
 </template>
 

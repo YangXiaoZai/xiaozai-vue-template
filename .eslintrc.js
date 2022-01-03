@@ -19,6 +19,8 @@ module.exports = {
     'dot-notation': 'off', // 强制尽可能地使用点号,
     'new-cap': 'off',
     'no-restricted-globals': 'off',
+    'arrow-parens': 'off',
+    'object-curly-newline': 'off',
   },
   globals: {
     // 高德地图

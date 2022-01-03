@@ -1,12 +1,12 @@
 <template>
   <div class="about">
-    <p v-html='this.$splitFloatFontSize(3.1415)'></p>
+    <p v-html="this.$splitFloatFontSize(3.1415)"></p>
     <a-button type="primary" @click="show = !show">点击查看常见过渡</a-button>
     <transition
-      enter-active-class='animate__animated animate__bounceIn'
-      leave-active-class='animate__animated animate__backOutRight'
+      enter-active-class="animate__animated animate__bounceIn"
+      leave-active-class="animate__animated animate__backOutRight"
     >
-      <div v-if='show'>
+      <div v-if="show">
         <p>This is an about page</p>
       </div>
     </transition>
@@ -15,9 +15,12 @@
     <!-- TODO：连续多次点击移除时，需要优化 -->
     <a-button type="primary" @click="remove" class="m-r-10">移除</a-button>
     <a-button type="primary" @click="shuffle">乱序</a-button>
-    <transition-group tag='p' name='fade-list' mode='out-in'
-      enter-active-class='animate__animated animate__bounceIn animate__fast'
-      leave-active-class='animate__animated animate__bounceOutRight animate__fast'
+    <transition-group
+      tag="p"
+      name="fade-list"
+      mode="out-in"
+      enter-active-class="animate__animated animate__bounceIn animate__fast"
+      leave-active-class="animate__animated animate__bounceOutRight animate__fast"
     >
       <span v-for="item in items" :key="item" class="list-item">{{item}}</span>
     </transition-group>
