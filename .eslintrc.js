@@ -1,28 +1,23 @@
 module.exports = {
   root: true,
+  parser: 'vue-eslint-parser',
+  parserOptions: {
+    parser: 'babel-eslint',
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  extends: [
+    'eslint:recommended', // eslint 官方推荐
+    'plugin:vue/recommended', // vue 官方推荐
+    'plugin:prettier/recommended', // 使用 prettier
+  ],
+  plugins: ['vue'],
   env: {
     node: true,
     browser: true,
     es6: true,
   },
-  extends: [
-    'alloy',
-    'alloy/vue',
-  ],
-  rules: {
-    // 'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    // 'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    // // 'prettier/prettier': 'error',
-    // 'no-tabs': 'off', // 禁用tab 关闭
-    // 'no-multi-assign': 'off', // 禁止连续赋值 关闭
-    // 'no-shadow': 'off', // 禁止变量声明与外层作用域的变量同名
-    // 'no-param-reassign': 'off', 	// 禁止对 function 的参数进行重新赋值
-    // 'dot-notation': 'off', // 强制尽可能地使用点号,
-    // 'new-cap': 'off',
-    // 'no-restricted-globals': 'off',
-    // 'arrow-parens': 'off',
-    // 'object-curly-newline': 'off',
-  },
+  rules: {},
   globals: {
     // 高德地图
     AMap: true,
