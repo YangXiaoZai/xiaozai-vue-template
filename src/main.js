@@ -20,10 +20,11 @@ import './permission'; // 引用permission
 Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示。
 
 // vue prototype
-Vue.prototype.$splitFloatFontSize = splitFloatFontSize;
+Vue.prototype.$splitFloatFontSize = splitFloatFontSize
 
 new Vue({
   router,
   store,
   render: (h) => h(App),
-}).$mount('#app');
+}).$mount('#app')
+console.log('Heelo')
