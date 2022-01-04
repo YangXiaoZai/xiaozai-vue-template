@@ -3,7 +3,7 @@ import { constantRoutes, asyncRoutes } from '@/router/index';
 // 判断是否有权限
 function hasPermission(route, roles) {
   if (route.meta.roles) {
-    return roles.some(role => route.meta.roles.includes(role));
+    return roles.some((role) => route.meta.roles.includes(role));
   }
   return true;
 }
@@ -11,7 +11,7 @@ function hasPermission(route, roles) {
 export function filterAsyncRoutes(routes, roles) {
   const res = [];
   console.log('routes', routes);
-  routes.forEach(route => {
+  routes.forEach((route) => {
     if (hasPermission(route, roles)) {
       if (route.children) {
         route.children = filterAsyncRoutes(route.children, roles);
@@ -37,7 +37,7 @@ const mutations = {
 
 const actions = {
   generateRoutes({ commit }, roles) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       let accessedRoutes;
       // admin为最高权限
       if (roles.includes('admin')) {

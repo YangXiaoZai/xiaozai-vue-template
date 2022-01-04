@@ -1,6 +1,6 @@
 <!-- map页面 -->
 <template>
-  <div class="container" id="container"></div>
+  <div id="container" class="container"></div>
 </template>
 
 <script>
@@ -10,11 +10,22 @@ export default {
   // import amap
   components: {},
   data() {
-    return {
-
-    };
+    return {};
   },
   computed: {},
+  // 生命周期 - 创建完成（可以访问当前this实例）
+  created() {},
+  // 生命周期 - 挂载完成（可以访问DOM元素）
+  mounted() {
+    this.initAMapLoader();
+  },
+  beforeCreate() {}, // 生命周期 - 创建之前
+  beforeMount() {}, // 生命周期 - 挂载之前
+  beforeUpdate() {}, // 生命周期 - 更新之前
+  updated() {}, // 生命周期 - 更新之后
+  beforeDestroy() {}, // 生命周期 - 销毁之前
+  destroyed() {}, // 生命周期 - 销毁完成
+  activated() {},
   methods: {
     initAMapLoader() {
       AMapLoader.load({
@@ -54,10 +65,10 @@ export default {
         url: 'https://a.amap.com/Loca/static/loca-v2/demos/mock_data/cuisine.json',
       });
 
-      const pl = window.pl = new Loca.PointLayer({
+      const pl = (window.pl = new Loca.PointLayer({
         zIndex: 10,
         blend: 'lighter',
-      });
+      }));
 
       const style = {
         radius: 3.5,
@@ -73,22 +84,7 @@ export default {
       const dat = new Loca.Dat();
       dat.addLayer(pl);
     },
-  },
-  // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {
-
-  },
-  // 生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-    this.initAMapLoader();
-  },
-  beforeCreate() {}, // 生命周期 - 创建之前
-  beforeMount() {}, // 生命周期 - 挂载之前
-  beforeUpdate() {}, // 生命周期 - 更新之前
-  updated() {}, // 生命周期 - 更新之后
-  beforeDestroy() {}, // 生命周期 - 销毁之前
-  destroyed() {}, // 生命周期 - 销毁完成
-  activated() {}, // 如果页面有keep-alive缓存功能，这个函数会触发
+  }, // 如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 <style lang="scss" scoped>

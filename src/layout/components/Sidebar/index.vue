@@ -10,17 +10,15 @@
         <template v-if="!item.hidden">
           <!-- <MenuItem v-if="!item.children" :key="item.path" :menu-info="item" /> -->
           <MenuItem
-            v-if="hasOneShowingChild(item.children,item)
-            && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow"
+            v-if="
+              hasOneShowingChild(item.children, item) &&
+              (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
+              !item.alwaysShow
+            "
             :key="item.path"
             :menu-info="item"
           />
-          <SubMenu
-            v-else
-            :key="item.path"
-            :menu-info="item"
-            :base-path="item.path"
-          />
+          <SubMenu v-else :key="item.path" :menu-info="item" :base-path="item.path" />
         </template>
       </template>
     </a-menu>
@@ -38,7 +36,9 @@ import mixin from '@/layout/components/Sidebar/mixin';
 
 export default {
   components: {
-    Logo, SubMenu, MenuItem,
+    Logo,
+    SubMenu,
+    MenuItem,
   },
   mixins: [mixin],
   data() {
@@ -50,13 +50,9 @@ export default {
     ...mapGetters(['permissionRoutes']),
   },
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {
-
-  },
+  created() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-
-  },
+  mounted() {},
   beforeCreate() {}, // 生命周期 - 创建之前
   beforeMount() {}, // 生命周期 - 挂载之前
   beforeUpdate() {}, // 生命周期 - 更新之前
@@ -68,5 +64,6 @@ export default {
 };
 </script>
 <style scoped>
-.container{}
+.container {
+}
 </style>

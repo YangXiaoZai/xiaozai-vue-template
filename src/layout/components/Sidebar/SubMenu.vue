@@ -1,21 +1,19 @@
 <!-- a-sub-menu -->
 <template>
   <a-sub-menu :key="menuInfo.path" v-bind="$props" v-on="$listeners">
-    <MsgItem :menuInfo="menuInfo" slot="title" />
+    <MsgItem slot="title" :menu-info="menuInfo" />
     <template v-for="item in menuInfo.children">
       <MenuItem
-        v-if="hasOneShowingChild(item.children,item) &&
-        (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow"
+        v-if="
+          hasOneShowingChild(item.children, item) &&
+          (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
+          !item.alwaysShow
+        "
         :key="resolvePath(item.path)"
         :menu-info="item"
         :base-path="basePath"
       />
-      <SubMenu
-        v-else
-        :key="resolvePath(item.path)"
-        :menu-info="item"
-        :base-path="resolvePath(item.path)"
-      />
+      <SubMenu v-else :key="resolvePath(item.path)" :menu-info="item" :base-path="resolvePath(item.path)" />
     </template>
   </a-sub-menu>
 </template>
@@ -48,19 +46,13 @@ export default {
     },
   },
   data() {
-    return {
-
-    };
+    return {};
   },
   computed: {},
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {
-
-  },
+  created() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-
-  },
+  mounted() {},
   beforeCreate() {}, // 生命周期 - 创建之前
   beforeMount() {}, // 生命周期 - 挂载之前
   beforeUpdate() {}, // 生命周期 - 更新之前
@@ -82,5 +74,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.container{}
+.container {
+}
 </style>

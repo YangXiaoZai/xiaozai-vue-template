@@ -2,7 +2,7 @@
 <template>
   <a-menu-item v-bind="$props" v-on="$listeners">
     <AppLink v-if="menuInfo.meta" :to="resolvePath(menuInfo.path)">
-      <MsgItem :menuInfo="menuInfo"></MsgItem>
+      <MsgItem :menu-info="menuInfo"></MsgItem>
     </AppLink>
   </a-menu-item>
 </template>
@@ -31,19 +31,13 @@ export default {
     },
   },
   data() {
-    return {
-
-    };
+    return {};
   },
   computed: {},
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {
-
-  },
+  created() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-
-  },
+  mounted() {},
   beforeCreate() {}, // 生命周期 - 创建之前
   beforeMount() {}, // 生命周期 - 挂载之前
   beforeUpdate() {}, // 生命周期 - 更新之前

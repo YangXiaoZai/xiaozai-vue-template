@@ -34,23 +34,23 @@ export default {
 <style lang="scss" scope>
 .layout-container {
   height: 100vh;
-  .logo{
+  .logo {
     height: 32px;
     background: rgba(255, 255, 255, 0.2);
     margin: 16px;
   }
-  .ant-layout-header{
+  .ant-layout-header {
     padding: 0 24px;
-    .trigger{
+    .trigger {
       font-size: 20px;
       cursor: pointer;
       color: #fff;
-      &:hover{
+      &:hover {
         color: #1890ff;
       }
     }
   }
-  .ant-layout-content{
+  .ant-layout-content {
     padding: 24px;
   }
 }

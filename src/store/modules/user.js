@@ -27,14 +27,14 @@ const actions = {
     const { user, password } = userInfo;
     return new Promise((resolve, reject) => {
       login({ user: user.trim(), password })
-        .then(res => {
+        .then((res) => {
           const { data } = res;
           const { token } = data;
           commit('SET_TOKEN', token);
           setToken(token);
           resolve();
         })
-        .catch(err => {
+        .catch((err) => {
           reject(err);
         });
     });
@@ -42,7 +42,7 @@ const actions = {
   getInfo({ state, commit }) {
     return new Promise((resolve, reject) => {
       getInfo(state.token)
-        .then(res => {
+        .then((res) => {
           // 拿roles
           const { roles, name, avatar, introduction } = res?.data;
 
@@ -57,7 +57,7 @@ const actions = {
 
           resolve(roles);
         })
-        .catch(err => {
+        .catch((err) => {
           reject(err);
         });
     });

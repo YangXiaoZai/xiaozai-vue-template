@@ -6,38 +6,25 @@
 
       <a-form-model ref="loginFrom" :rules="rules" :model="loginFrom">
         <a-form-model-item prop="user">
-          <a-input
-            ref="user"
-            v-model="loginFrom.user"
-            size="large"
-            placeholder="请输入账号"
-          >
-            <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)" />
+          <a-input ref="user" v-model="loginFrom.user" size="large" placeholder="请输入账号">
+            <a-icon slot="prefix" type="user" style="color: rgba(0, 0, 0, 0.25)" />
           </a-input>
         </a-form-model-item>
 
         <a-form-model-item prop="password">
           <a-input-password
             ref="password"
-            size="large"
             v-model="loginFrom.password"
+            size="large"
             type="password"
             placeholder="请输入密码"
             @keyup.enter.native="handleLogin"
           >
-            <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)" />
+            <a-icon slot="prefix" type="lock" style="color: rgba(0, 0, 0, 0.25)" />
           </a-input-password>
         </a-form-model-item>
         <a-form-model-item>
-          <a-button
-            type="primary"
-            block
-            size="large"
-            @click="handleLogin"
-            :loading="loading"
-          >
-            登录
-          </a-button>
+          <a-button type="primary" block size="large" :loading="loading" @click="handleLogin"> 登录 </a-button>
         </a-form-model-item>
       </a-form-model>
     </div>
@@ -57,12 +44,8 @@ export default {
         password: '',
       },
       rules: {
-        user: [
-          { required: true, message: '请输入账号', trigger: 'blur' },
-        ],
-        password: [
-          { required: true, message: '请输入密码', trigger: 'blur' },
-        ],
+        user: [{ required: true, message: '请输入账号', trigger: 'blur' }],
+        password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
       },
       loading: false,
     };
@@ -77,6 +60,23 @@ export default {
       immediate: true,
     },
   },
+  // 生命周期 - 创建完成（可以访问当前this实例）
+  created() {},
+  // 生命周期 - 挂载完成（可以访问DOM元素）
+  mounted() {
+    if (this.loginFrom.user === '') {
+      this.$refs.user.focus();
+    } else if (this.loginFrom.password === '') {
+      this.$refs.password.focus();
+    }
+  },
+  beforeCreate() {}, // 生命周期 - 创建之前
+  beforeMount() {}, // 生命周期 - 挂载之前
+  beforeUpdate() {}, // 生命周期 - 更新之前
+  updated() {}, // 生命周期 - 更新之后
+  beforeDestroy() {}, // 生命周期 - 销毁之前
+  destroyed() {}, // 生命周期 - 销毁完成
+  activated() {},
   methods: {
     handleLogin() {
       this.$refs.loginFrom.validate((valid) => {
@@ -97,30 +97,11 @@ export default {
         }
       });
     },
-  },
-  // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {
-
-  },
-  // 生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-    if (this.loginFrom.user === '') {
-      this.$refs.user.focus();
-    } else if (this.loginFrom.password === '') {
-      this.$refs.password.focus();
-    }
-  },
-  beforeCreate() {}, // 生命周期 - 创建之前
-  beforeMount() {}, // 生命周期 - 挂载之前
-  beforeUpdate() {}, // 生命周期 - 更新之前
-  updated() {}, // 生命周期 - 更新之后
-  beforeDestroy() {}, // 生命周期 - 销毁之前
-  destroyed() {}, // 生命周期 - 销毁完成
-  activated() {}, // 如果页面有keep-alive缓存功能，这个函数会触发
+  }, // 如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 <style lang="scss" scoped>
-.container{
+.container {
   width: 100vw;
   height: 100vh;
   background-color: #283443;
@@ -133,7 +114,7 @@ export default {
     max-width: 100%;
     margin: 35px;
     border: 1px solid transparent;
-    background: rgba(0,0,0,.4);
+    background: rgba(0, 0, 0, 0.4);
     padding: 60px 30px;
   }
 }

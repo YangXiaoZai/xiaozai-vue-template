@@ -11,9 +11,9 @@
       </div>
     </transition>
     <h1>列表过渡</h1>
-    <a-button type="primary" @click="add" class="m-r-10">新增</a-button>
+    <a-button type="primary" class="m-r-10" @click="add">新增</a-button>
     <!-- TODO：连续多次点击移除时，需要优化 -->
-    <a-button type="primary" @click="remove" class="m-r-10">移除</a-button>
+    <a-button type="primary" class="m-r-10" @click="remove">移除</a-button>
     <a-button type="primary" @click="shuffle">乱序</a-button>
     <transition-group
       tag="p"
@@ -22,7 +22,7 @@
       enter-active-class="animate__animated animate__bounceIn animate__fast"
       leave-active-class="animate__animated animate__bounceOutRight animate__fast"
     >
-      <span v-for="item in items" :key="item" class="list-item">{{item}}</span>
+      <span v-for="item in items" :key="item" class="list-item">{{ item }}</span>
     </transition-group>
   </div>
 </template>
@@ -42,7 +42,7 @@ export default {
       return Math.floor(Math.random() * this.items.length);
     },
     add() {
-      this.items.splice(this.getRandowIndex(), 0, this.num += 1);
+      this.items.splice(this.getRandowIndex(), 0, (this.num += 1));
     },
     remove() {
       this.items.splice(this.getRandowIndex(), 1);
@@ -58,6 +58,6 @@ export default {
   display: inline-block;
   margin-right: 10px;
   font-size: 20px;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 </style>

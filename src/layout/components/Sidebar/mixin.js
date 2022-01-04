@@ -8,7 +8,7 @@ export default {
     // 判断是否只有一个children 或者 没有children
     hasOneShowingChild(children = [], parent) {
       // 过滤出item.hidden为false
-      const showingChildren = children.filter(item => {
+      const showingChildren = children.filter((item) => {
         if (item.hidden) {
           return false;
         }

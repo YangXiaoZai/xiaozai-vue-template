@@ -191,11 +191,12 @@ export const asyncRoutes = [
 //   },
 // ];
 
-const createRouter = () => new Router({
-  // mode: 'history', // 需要服务器配置
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes,
-});
+const createRouter = () =>
+  new Router({
+    // mode: 'history', // 需要服务器配置
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes,
+  });
 
 const router = createRouter();
 

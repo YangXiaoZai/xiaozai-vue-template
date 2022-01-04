@@ -3,29 +3,22 @@
   <div class="container">
     test
 
-    <router-link :to="{path:'nested/menu1'}"> nihao </router-link>
+    <router-link :to="{ path: 'nested/menu1' }"> nihao </router-link>
     <a-button type="primary" @click="test">测试</a-button>
   </div>
 </template>
 
 <script>
-
 export default {
   components: {},
   data() {
-    return {
-
-    };
+    return {};
   },
   computed: {},
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {
-
-  },
+  created() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-
-  },
+  mounted() {},
   beforeCreate() {}, // 生命周期 - 创建之前
   beforeMount() {}, // 生命周期 - 挂载之前
   beforeUpdate() {}, // 生命周期 - 更新之前
@@ -44,5 +37,6 @@ export default {
 };
 </script>
 <style scoped>
-.container{}
+.container {
+}
 </style>

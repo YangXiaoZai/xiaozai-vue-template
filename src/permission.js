@@ -36,10 +36,7 @@ router.beforeEach(async (to, from, next) => {
         // const { roles } = await store.dispatch('/user/getInfo');
         const roles = ['admin'];
         // 2.自动添加路由
-        const accessRoutes = await store.dispatch(
-          'permission/generateRoutes',
-          roles,
-        );
+        const accessRoutes = await store.dispatch('permission/generateRoutes', roles);
         router.addRoutes(accessRoutes);
         // 3.next()
 

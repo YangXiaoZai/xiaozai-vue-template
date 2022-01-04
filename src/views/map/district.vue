@@ -4,7 +4,6 @@
 </template>
 
 <script>
-
 export default {
   components: {},
   data() {
@@ -47,7 +46,6 @@ export default {
         710000: 2.64, // 台湾
         810000: 3.0, // 香港
         820000: 4.7, // 澳门
-
       },
       disCountry: null, // 国家
       disProvinve: null, // 省份
@@ -62,6 +60,19 @@ export default {
     };
   },
   computed: {},
+  // 生命周期 - 创建完成（可以访问当前this实例）
+  created() {},
+  // 生命周期 - 挂载完成（可以访问DOM元素）
+  mounted() {
+    this.initMap();
+  },
+  beforeCreate() {}, // 生命周期 - 创建之前
+  beforeMount() {}, // 生命周期 - 挂载之前
+  beforeUpdate() {}, // 生命周期 - 更新之前
+  updated() {}, // 生命周期 - 更新之后
+  beforeDestroy() {}, // 生命周期 - 销毁之前
+  destroyed() {}, // 生命周期 - 销毁完成
+  activated() {},
   methods: {
     initMap() {
       // eslint-disable-next-line no-unused-vars
@@ -194,9 +205,7 @@ export default {
       this.infoWindow?.close();
       console.log(event);
     },
-    setInfoWindow() {
-
-    },
+    setInfoWindow() {},
     getColorByDGP(adcode) {
       if (!this.colors[adcode]) {
         const gdp = this.GDPSpeed[adcode];
@@ -204,7 +213,7 @@ export default {
           this.colors[adcode] = 'rgb(227,227,227)';
         } else {
           // eslint-disable-next-line no-mixed-operators
-          const rg = 255 - Math.floor((gdp - 5) / 5 * 255);
+          const rg = 255 - Math.floor(((gdp - 5) / 5) * 255);
           this.colors[adcode] = `rgb(${rg},${rg},255)`;
         }
       }
@@ -218,28 +227,15 @@ export default {
 
       return this.colors[adcode];
     },
-  },
-  // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
-  // 生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-    this.initMap();
-  },
-  beforeCreate() {}, // 生命周期 - 创建之前
-  beforeMount() {}, // 生命周期 - 挂载之前
-  beforeUpdate() {}, // 生命周期 - 更新之前
-  updated() {}, // 生命周期 - 更新之后
-  beforeDestroy() {}, // 生命周期 - 销毁之前
-  destroyed() {}, // 生命周期 - 销毁完成
-  activated() {}, // 如果页面有keep-alive缓存功能，这个函数会触发
+  }, // 如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 <style lang="scss" scoped>
-#container{
+#container {
   width: 100vw;
   height: 100vh;
 }
-.cyan{
+.cyan {
   color: #1cbbb4;
 }
 </style>
