@@ -3,6 +3,9 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
+// normalize标准化css
+import 'normalize.css/normalize.css';
+
 import { splitFloatFontSize } from './utils/num.js';
 
 // import ant-design-vue
