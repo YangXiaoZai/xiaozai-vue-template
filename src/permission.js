@@ -40,9 +40,7 @@ router.beforeEach(async (to, from, next) => {
         router.addRoutes(accessRoutes);
         // 3.next()
 
-        // 他俩有什么区别吗？
-        // next({ ...to, replace: true });
-        next();
+        next({ ...to, replace: true });
       }
     }
   } else if (whiteList.includes(to.path)) {

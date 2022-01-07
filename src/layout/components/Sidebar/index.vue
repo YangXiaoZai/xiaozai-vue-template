@@ -1,10 +1,8 @@
 <!-- sidebarIndex -->
 <template>
   <div class="container">
-    <!-- logo部分 -->
-    <Logo :collapsed="collapsed"></Logo>
     <!-- 菜单栏 -->
-    <a-menu mode="inline" theme="dark" :inline-collapsed="collapsed">
+    <a-menu :mode="mode" :theme="pageStyle" :inline-collapsed="collapsed">
       <template v-for="item in permissionRoutes">
         <!-- TODO 通过render定义菜单栏 -->
         <template v-if="!item.hidden">
@@ -26,27 +24,32 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 
-import Logo from '@/layout/components/Sidebar/Logo.vue';
 // import SidebarItem from '@/layout/components/Sidebar/SidebarItem.vue';
 import SubMenu from '@/layout/components/Sidebar/SubMenu.vue';
 import MenuItem from '@/layout/components/Sidebar/MenuItem.vue';
 import mixin from '@/layout/components/Sidebar/mixin';
-
 export default {
   components: {
-    Logo,
     SubMenu,
     MenuItem,
   },
   mixins: [mixin],
+  props: {
+    collapsed: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
-    return {
-      collapsed: true,
-    };
+    return {};
   },
   computed: {
+    ...mapState({
+      mode: (state) => state.setting.navigationMode,
+      pageStyle: (state) => state.setting.pageStyle,
+    }),
     ...mapGetters(['permissionRoutes']),
   },
   // 生命周期 - 创建完成（可以访问当前this实例）

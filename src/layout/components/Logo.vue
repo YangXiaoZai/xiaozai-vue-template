@@ -1,22 +1,23 @@
 <!-- logo区域 -->
 <template>
   <div class="sidebar-logo-container">
-    <transition>
+    <transition name="sidebarLogoFade">
       <!-- 菜单收起状态 -->
-      <router-link v-if="collapsed" key="collapsed" to="/">
-        <img v-if="logo" :src="logo" alt="" class="sidebar-logo" />
-        <h1 v-else class="sidebar-title">{{ title }}</h1>
+      <router-link v-if="collapsed" key="collapsed" to="/" class="flex-center sidebar-logo-link">
+        <img :src="logo" alt="" class="sidebar-logo" />
       </router-link>
       <!-- 菜单展开状态 -->
-      <router-link v-else key="expand" to="/">
+      <router-link v-else key="expand" to="/" class="flex-center sidebar-logo-link">
         <img v-if="logo" :src="logo" alt="" class="sidebar-logo" />
-        <h1 class="sidebar-title">{{ title }}</h1>
+        <h1 class="sidebar-title" :class="pageStyle == 'light' ? 'title-black-color' : ''">{{ title }}</h1>
       </router-link>
     </transition>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 const logo = require('@/assets/logo.png');
 
 export default {
@@ -30,10 +31,14 @@ export default {
   data() {
     return {
       logo,
-      title: 'Xiao Zai Template',
     };
   },
-  computed: {},
+  computed: {
+    ...mapState({
+      title: (state) => state.setting.title,
+      pageStyle: (state) => state.setting.pageStyle,
+    }),
+  },
   // 生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
@@ -49,10 +54,39 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.container {
+// 动画
+.sidebarLogoFade-enter-active {
+  transition: opacity 0.8s;
+}
+
+.sidebarLogoFade-enter,
+.sidebarLogoFade-leave-to {
+  opacity: 0;
+}
+
+.sidebar-logo-container {
+  overflow: hidden;
+  height: 64px;
+  line-height: 64px;
+  .sidebar-logo-link {
+    width: 100%;
+    height: 100%;
+  }
   .sidebar-logo {
     width: 32px;
     height: 32px;
+  }
+  .sidebar-title {
+    margin-left: 12px;
+    font-size: 18px;
+    margin-bottom: 0;
+    font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    vertical-align: middle;
+    color: rgba(255, 255, 255, 0.65);
+  }
+  .title-black-color {
+    color: rgba(0, 0, 0, 0.45);
   }
 }
 </style>

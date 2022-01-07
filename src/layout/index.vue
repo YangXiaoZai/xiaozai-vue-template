@@ -1,23 +1,18 @@
 <template>
-  <a-layout class="layout-container">
-    <a-layout-sider v-model="collapsed" collapsible>
-      <sidebar></sidebar>
-    </a-layout-sider>
-    <a-layout>
-      <a-layout-header></a-layout-header>
-      <a-layout-content>
-        <AppMain />
-      </a-layout-content>
-      <a-layout-footer></a-layout-footer>
-    </a-layout>
-  </a-layout>
+  <div class="container">
+    <LeftNavLayout v-if="mode === 'inline'"></LeftNavLayout>
+    <TopNavLayout v-else></TopNavLayout>
+    <Setting class="setting-container"></Setting>
+  </div>
 </template>
 <script>
-import sidebar from '@/layout/components/Sidebar/index.vue';
-import AppMain from '@/layout/components/AppMain.vue';
+import LeftNavLayout from '@/layout/LeftNavLayout.vue';
+import TopNavLayout from '@/layout/TopNavLayout.vue';
+import Setting from '@/layout/components/Setting/index.vue';
+import { mapState } from 'vuex';
 
 export default {
-  components: { sidebar, AppMain },
+  components: { LeftNavLayout, TopNavLayout, Setting },
   data() {
     return {
       collapsed: false,
@@ -27,48 +22,20 @@ export default {
     key() {
       return this.$route.fullPath;
     },
+    ...mapState({
+      mode: (state) => state.setting.navigationMode,
+    }),
   },
   created() {},
 };
 </script>
 <style lang="scss" scope>
-.layout-container {
-  height: 100vh;
-  .logo {
-    height: 32px;
-    background: rgba(255, 255, 255, 0.2);
-    margin: 16px;
+.container {
+  position: relative;
+  .setting-container {
+    position: absolute;
+    right: 0;
+    top: 300px;
   }
-  .ant-layout-header {
-    padding: 0 24px;
-    .trigger {
-      font-size: 20px;
-      cursor: pointer;
-      color: #fff;
-      &:hover {
-        color: #1890ff;
-      }
-    }
-  }
-  .ant-layout-content {
-    padding: 24px;
-  }
-}
-#components-layout-demo-custom-trigger .trigger {
-  font-size: 18px;
-  line-height: 64px;
-  padding: 0 24px;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-#components-layout-demo-custom-trigger .trigger:hover {
-  color: #1890ff;
-}
-
-#components-layout-demo-custom-trigger .logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
 }
 </style>
