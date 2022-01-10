@@ -61,7 +61,7 @@
             <template slot="title"> 顶部菜单栏 </template>
             <div class="option-item same-block" @click="changeSetting('navigationMode', 'horizontal')">
               <img src="https://gw.alipayobjects.com/zos/antfincdn/URETY8%24STp/KDNDBbriJhLwuqMoxcAr.svg" alt="dark" />
-              <a-icon v-show="pageStyle === 'horizontal'" type="check" class="option-item-icon"></a-icon>
+              <a-icon v-show="mode === 'horizontal'" type="check" class="option-item-icon"></a-icon>
             </div>
           </a-tooltip>
         </div>
