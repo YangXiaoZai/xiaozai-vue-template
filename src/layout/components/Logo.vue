@@ -35,8 +35,8 @@ export default {
   },
   computed: {
     ...mapState({
-      title: (state) => state.setting.title,
-      pageStyle: (state) => state.setting.pageStyle,
+      title: (state) => state.settings.title,
+      pageStyle: (state) => state.settings.pageStyle,
     }),
   },
   // 生命周期 - 创建完成（可以访问当前this实例）

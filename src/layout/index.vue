@@ -2,17 +2,17 @@
   <div class="container">
     <LeftNavLayout v-if="mode === 'inline'"></LeftNavLayout>
     <TopNavLayout v-else></TopNavLayout>
-    <Setting class="setting-container"></Setting>
+    <Settings class="setting-container"></Settings>
   </div>
 </template>
 <script>
 import LeftNavLayout from '@/layout/LeftNavLayout.vue';
 import TopNavLayout from '@/layout/TopNavLayout.vue';
-import Setting from '@/layout/components/Setting/index.vue';
+import Settings from '@/layout/components/Settings/index.vue';
 import { mapState } from 'vuex';
 
 export default {
-  components: { LeftNavLayout, TopNavLayout, Setting },
+  components: { LeftNavLayout, TopNavLayout, Settings },
   data() {
     return {
       collapsed: false,
@@ -23,7 +23,7 @@ export default {
       return this.$route.fullPath;
     },
     ...mapState({
-      mode: (state) => state.setting.navigationMode,
+      mode: (state) => state.settings.navigationMode,
     }),
   },
   created() {},

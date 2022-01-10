@@ -31,19 +31,19 @@
         </div>
 
         <!-- TODO动态修改主题色 -->
-        <!-- <div class="conditions-item">
+        <div class="conditions-item">
           <p>主题色</p>
           <a-tooltip v-for="item in colorList" :key="item.key">
             <template slot="title"> {{ item.key }} </template>
             <div
               class="color-item same-block"
               :style="{ background: item.color }"
-              @click="changeSetting('pageStyle', 'light')"
+              @click="changeSetting('themeColor', item.color)"
             >
-              <a-icon type="check" class="color-item-icon"></a-icon>
+              <a-icon v-show="themeColor === item.color" type="check" class="color-item-icon"></a-icon>
             </div>
           </a-tooltip>
-        </div> -->
+        </div>
 
         <a-divider></a-divider>
 
@@ -71,7 +71,8 @@
 </template>
 
 <script>
-import { colorList } from './color.js';
+import { colorList } from './themeColor/color.js';
+import themeColor from './themeColor/updateThemeColor.js';
 import { mapState } from 'vuex';
 
 export default {
@@ -84,14 +85,26 @@ export default {
   },
   computed: {
     ...mapState({
-      mode: (state) => state.setting.navigationMode,
-      pageStyle: (state) => state.setting.pageStyle,
+      mode: (state) => state.settings.navigationMode,
+      pageStyle: (state) => state.settings.pageStyle,
+      themeColor: (state) => state.settings.themeColor,
     }),
   },
   methods: {
     changeSetting(key, value) {
       const data = { key, value };
-      this.$store.dispatch('setting/changeSetting', data);
+      this.$store.dispatch('settings/changeSetting', data);
+      // 主题色特殊处理
+      if (key === 'themeColor') {
+        this.updateTheme(value);
+      }
+    },
+    updateTheme(newPrimaryColor) {
+      themeColor.changeColor(newPrimaryColor).finally(() => {
+        // setTimeout(() => {
+        //   this.$message.loading('正在切换主题！', 10);
+        // }, 10);
+      });
     },
   },
 };

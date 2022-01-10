@@ -1,7 +1,7 @@
-import defaultSetting from '@/setting.js';
+import defaultSettings from '@/settings.js';
 
 const { title, pageStyle, themeColor, navigationMode, sidebarLogo, contentWidth, fixedHeader, fixedSide } =
-  defaultSetting;
+  defaultSettings;
 
 const state = {
   title,

@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     ...mapState({
-      pageStyle: (state) => state.setting.pageStyle,
+      pageStyle: (state) => state.settings.pageStyle,
     }),
     key() {
       return this.$route.fullPath;

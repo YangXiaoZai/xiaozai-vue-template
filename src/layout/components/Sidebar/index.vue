@@ -47,8 +47,8 @@ export default {
   },
   computed: {
     ...mapState({
-      mode: (state) => state.setting.navigationMode,
-      pageStyle: (state) => state.setting.pageStyle,
+      mode: (state) => state.settings.navigationMode,
+      pageStyle: (state) => state.settings.pageStyle,
     }),
     ...mapGetters(['permissionRoutes']),
   },

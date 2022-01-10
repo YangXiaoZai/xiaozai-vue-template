@@ -1,4 +1,4 @@
-import { title } from '../setting';
+import { title } from '../settings';
 
 export default function setPageTitle(pageTitle) {
   if (pageTitle) {
