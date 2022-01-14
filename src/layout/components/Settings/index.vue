@@ -92,6 +92,7 @@ export default {
   },
   methods: {
     changeSetting(key, value) {
+      console.log(key, value);
       const data = { key, value };
       this.$store.dispatch('settings/changeSetting', data);
       // 主题色特殊处理
@@ -101,9 +102,7 @@ export default {
     },
     updateTheme(newPrimaryColor) {
       themeColor.changeColor(newPrimaryColor).finally(() => {
-        // setTimeout(() => {
-        //   this.$message.loading('正在切换主题！', 10);
-        // }, 10);
+        this.$message.loading('正在切换主题', 1);
       });
     },
   },
@@ -115,7 +114,6 @@ export default {
   .handle-item {
     width: 48px;
     height: 48px;
-    background: red;
     color: #fff;
     border-radius: 4px 0 0 4px;
   }
@@ -171,5 +169,12 @@ export default {
       }
     }
   }
+}
+</style>
+<style lang="less" scope>
+@import '~ant-design-vue/lib/style/themes/index.less'; // 引入官方提供的theme
+
+.handle-item {
+  background: @primary-color;
 }
 </style>

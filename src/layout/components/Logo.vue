@@ -85,8 +85,11 @@ export default {
     vertical-align: middle;
     color: rgba(255, 255, 255, 0.65);
   }
-  .title-black-color {
-    color: rgba(0, 0, 0, 0.45);
-  }
+}
+</style>
+<style lang="less" scope>
+@import '~ant-design-vue/lib/style/themes/index.less'; // 引入官方提供的theme
+.title-black-color {
+  color: @primary-color !important;
 }
 </style>

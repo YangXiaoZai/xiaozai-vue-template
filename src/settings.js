@@ -16,11 +16,7 @@ module.exports = {
   pageStyle: 'light',
 
   // 主题色
-  /**
-   * @type {string} "light" | "dark"
-   * @description Switch light or dark themeColor
-   */
-  themeColor: '',
+  themeColor: '#1890FF',
 
   // 导航模式
   /**
