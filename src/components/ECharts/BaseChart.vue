@@ -62,6 +62,7 @@ export default {
       type: Object,
       default: () => ({
         trigger: 'axis',
+        // valueFormatter: (value) => value + '元',
       }),
     },
     // 图例

@@ -41,6 +41,7 @@ export default {
       type: Object,
       default: () => ({
         trigger: 'item',
+        // valueFormatter: (value) => value + '%',
       }),
     },
     // 图例
@@ -140,11 +141,11 @@ export default {
               shadowOffsetX: 0,
               shadowColor: 'rgba(0, 0, 0, 0.5)',
             },
-            label: {
-              show: true,
-              fontSize: '20',
-              fontWeight: 'bold',
-            },
+            // label: {
+            //   show: true,
+            //   fontSize: '20',
+            //   fontWeight: 'bold',
+            // },
           },
           label: {
             show: false,
