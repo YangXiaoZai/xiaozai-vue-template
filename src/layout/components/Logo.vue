@@ -1,6 +1,9 @@
 <!-- logo区域 -->
 <template>
-  <div class="sidebar-logo-container">
+  <div
+    class="sidebar-logo-container"
+    :class="mode == 'inline' && pageStyle == 'light' ? 'sidebar-logo-container-border' : ''"
+  >
     <transition name="sidebarLogoFade">
       <!-- 菜单收起状态 -->
       <router-link v-if="collapsed" key="collapsed" to="/" class="flex-center sidebar-logo-link">
@@ -37,6 +40,7 @@ export default {
     ...mapState({
       title: (state) => state.settings.title,
       pageStyle: (state) => state.settings.pageStyle,
+      mode: (state) => state.settings.navigationMode,
     }),
   },
   // 生命周期 - 创建完成（可以访问当前this实例）
@@ -68,6 +72,7 @@ export default {
   overflow: hidden;
   height: 64px;
   line-height: 64px;
+
   .sidebar-logo-link {
     width: 100%;
     height: 100%;
@@ -85,6 +90,10 @@ export default {
     vertical-align: middle;
     color: rgba(255, 255, 255, 0.65);
   }
+}
+.sidebar-logo-container-border {
+  border-right: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
 }
 </style>
 <style lang="less" scope>
