@@ -2,11 +2,9 @@
 <template>
   <a-row>
     <a-col :sm="24" :md="12" :lg="12">
-      <!-- <p class="liquid-chart-title">发货占比</p> -->
       <LiquidFillChart :title="'发货占比'"></LiquidFillChart>
     </a-col>
     <a-col :sm="24" :md="12" :lg="12">
-      <!-- <p class="liquid-chart-title"></p> -->
       <LiquidFillChart :chart-data="chartData" :title="'剩余库存'"></LiquidFillChart>
     </a-col>
   </a-row>

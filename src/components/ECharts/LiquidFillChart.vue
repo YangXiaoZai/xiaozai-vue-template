@@ -33,7 +33,6 @@ export default {
     // 图表数据
     chartData: {
       type: Array,
-      required: true,
       default: () => [0.6, 0.5, 0.3, 0.1],
     },
     // 是否展示label
@@ -68,7 +67,6 @@ export default {
   activated() {}, // 如果页面有keep-alive缓存功能，这个函数会触发
   methods: {
     initChart() {
-      console.log(this.$refs.chart);
       this.chart = echarts.init(this.$refs.chart);
       this.setOptions();
     },
