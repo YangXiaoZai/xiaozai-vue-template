@@ -1,4 +1,7 @@
 <!-- menu2 -->
 <template>
-  <div class="container">menu2</div>
+  <div class="container">
+    menu2
+    <router-view></router-view>
+  </div>
 </template>

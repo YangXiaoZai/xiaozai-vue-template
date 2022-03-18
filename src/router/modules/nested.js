@@ -22,6 +22,7 @@ const nestedRouter = {
     {
       path: 'menu2',
       name: 'Menu2',
+      redirect: '/nested/menu2/menu2-1',
       component: () => import('@/views/nested/menu2/index.vue'),
       meta: {
         title: '路由2',
@@ -41,6 +42,7 @@ const nestedRouter = {
           path: 'menu2-2',
           name: 'Menu2-2',
           component: () => import('@/views/nested/menu2/menu2-2/index.vue'),
+          redirect: '/nested/menu2/menu2-2/menu2-2-1',
           meta: {
             title: '路由2-2',
             icon: 'pic-center',
