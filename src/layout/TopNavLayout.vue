@@ -3,7 +3,7 @@
     <a-layout-header class="layout-header" :class="pageStyle == 'light' ? 'bg-fff' : ''">
       <div class="top-nav-main flex-center">
         <Logo></Logo>
-        <sidebar class="top-nav-menu"></sidebar>
+        <Sidebar class="top-nav-menu"></Sidebar>
       </div>
     </a-layout-header>
     <a-layout-content class="top-nav-layout">
@@ -13,14 +13,14 @@
   </a-layout>
 </template>
 <script>
-import sidebar from '@/layout/components/Sidebar/index.vue';
+import Sidebar from '@/layout/components/Sidebar/index.vue';
 import AppMain from '@/layout/components/AppMain.vue';
 import Logo from '@/layout/components/Logo.vue';
 
 import { mapState } from 'vuex';
 
 export default {
-  components: { sidebar, AppMain, Logo },
+  components: { Sidebar, AppMain, Logo },
   data() {
     return {
       collapsed: false,

@@ -1,7 +1,7 @@
 <!-- a-menu-item -->
 <template>
   <a-menu-item v-bind="$props" v-on="$listeners">
-    <AppLink v-if="menuInfo.meta" :to="resolvePath(menuInfo.path)">
+    <AppLink v-if="menuInfo.meta" :to="resolvePath(basePath, menuInfo.path)">
       <MsgItem :menu-info="menuInfo"></MsgItem>
     </AppLink>
   </a-menu-item>
@@ -9,16 +9,15 @@
 
 <script>
 import { Menu } from 'ant-design-vue';
-import path from 'path';
-
-import { isExternal } from '@/utils/validate';
 import AppLink from '@/layout/components/Sidebar/AppLink.vue';
 import MsgItem from '@/layout/components/Sidebar/MsgItem.vue';
+import mixin from '@/layout/components/Sidebar/mixin';
 
 export default {
   components: { AppLink, MsgItem },
   // must add isMenuItem: true
   isMenuItem: true,
+  mixins: [mixin],
   props: {
     ...Menu.Item.props,
     menuInfo: {
@@ -45,16 +44,6 @@ export default {
   beforeDestroy() {}, // 生命周期 - 销毁之前
   destroyed() {}, // 生命周期 - 销毁完成
   activated() {}, // 如果页面有keep-alive缓存功能，这个函数会触发
-  methods: {
-    resolvePath(routePath) {
-      if (isExternal(routePath)) {
-        return routePath;
-      }
-      if (isExternal(this.basePath)) {
-        return this.basePath;
-      }
-      return path.resolve(this.basePath, routePath);
-    },
-  },
+  methods: {},
 };
 </script>

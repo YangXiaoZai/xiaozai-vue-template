@@ -1,8 +1,10 @@
 <!-- sidebarIndex -->
 <template>
+  <!-- TODO fix:选中三级菜单后，一级菜单未高亮 -->
+  <!-- TODO fix:刷新页面，默认展开当前菜单 -->
   <div class="container">
     <!-- 菜单栏 -->
-    <a-menu :mode="mode" :theme="pageStyle" :inline-collapsed="collapsed">
+    <a-menu :selected-keys="currentMenu" :mode="mode" :theme="pageStyle" :inline-collapsed="collapsed">
       <template v-for="item in permissionRoutes">
         <!-- TODO 通过render定义菜单栏 -->
         <template v-if="!item.hidden">
@@ -13,8 +15,9 @@
               (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
               !item.alwaysShow
             "
-            :key="item.path"
-            :menu-info="item"
+            :key="resolvePath(item.path, onlyOneChild.path)"
+            :menu-info="onlyOneChild"
+            :base-path="item.path"
           />
           <SubMenu v-else :key="item.path" :menu-info="item" :base-path="item.path" />
         </template>
@@ -30,6 +33,7 @@ import { mapGetters, mapState } from 'vuex';
 import SubMenu from '@/layout/components/Sidebar/SubMenu.vue';
 import MenuItem from '@/layout/components/Sidebar/MenuItem.vue';
 import mixin from '@/layout/components/Sidebar/mixin';
+
 export default {
   components: {
     SubMenu,
@@ -43,7 +47,9 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      currentMenu: [],
+    };
   },
   computed: {
     ...mapState({
@@ -51,6 +57,14 @@ export default {
       pageStyle: (state) => state.settings.pageStyle,
     }),
     ...mapGetters(['permissionRoutes']),
+  },
+  watch: {
+    $route: {
+      handler() {
+        this.currentMenu = [this.$route.path];
+      },
+      immediate: true,
+    },
   },
   // 生命周期 - 创建完成（可以访问当前this实例）
   created() {},

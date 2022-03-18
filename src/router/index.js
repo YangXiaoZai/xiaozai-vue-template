@@ -40,10 +40,11 @@ export const constantRoutes = [
   },
   {
     path: '/',
+    name: 'Index', //首页name必须为Index,面包屑根据此判断
     redirect: '/dashboard',
     component: layout,
     meta: {
-      title: '看板',
+      title: '首页',
       icon: 'dashboard',
     },
     children: [
@@ -75,11 +76,9 @@ export const constantRoutes = [
   },
   {
     path: '/test',
-    redirect: '/test/index',
     component: layout,
     meta: {
-      title: '测试',
-      icon: 'dashboard',
+      breadcrumb: false,
     },
     children: [
       {
@@ -88,6 +87,7 @@ export const constantRoutes = [
         meta: {
           title: '测试',
           icon: 'dashboard',
+          breadcrumb: false,
         },
       },
     ],
@@ -120,12 +120,9 @@ export const asyncRoutes = [
   },
   {
     path: '/about',
-    // name: 'About',
+    name: 'About',
     component: layout,
-    redirect: '/about/index',
     meta: {
-      title: '关于',
-      icon: 'dashboard',
       roles: ['admin'],
     },
     children: [
@@ -194,7 +191,9 @@ export const asyncRoutes = [
 const createRouter = () =>
   new Router({
     // mode: 'history', // 需要服务器配置
-    scrollBehavior: () => ({ y: 0 }),
+    scrollBehavior: () => ({
+      y: 0,
+    }),
     routes: constantRoutes,
   });
 

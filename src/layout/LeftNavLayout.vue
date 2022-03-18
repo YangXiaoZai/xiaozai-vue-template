@@ -2,10 +2,12 @@
   <a-layout class="layout-container">
     <a-layout-sider v-model="collapsed" :theme="pageStyle" collapsible>
       <Logo :collapsed="collapsed"></Logo>
-      <sidebar :collapsed="collapsed"></sidebar>
+      <Sidebar :collapsed="collapsed"></Sidebar>
     </a-layout-sider>
     <a-layout>
-      <a-layout-header style="background: #fff"></a-layout-header>
+      <a-layout-header class="layout-header">
+        <Breadcrumb></Breadcrumb>
+      </a-layout-header>
       <a-layout-content>
         <AppMain />
       </a-layout-content>
@@ -14,14 +16,15 @@
   </a-layout>
 </template>
 <script>
-import sidebar from '@/layout/components/Sidebar/index.vue';
+import Sidebar from '@/layout/components/Sidebar/index.vue';
 import AppMain from '@/layout/components/AppMain.vue';
 import Logo from '@/layout/components/Logo.vue';
+import Breadcrumb from '@/components/Breadcrumb/index.vue';
 
 import { mapState } from 'vuex';
 
 export default {
-  components: { sidebar, AppMain, Logo },
+  components: { Sidebar, AppMain, Logo, Breadcrumb },
   data() {
     return {
       collapsed: false,
@@ -44,6 +47,13 @@ export default {
   height: 100vh;
   .ant-layout-content {
     padding: 24px;
+  }
+  .layout-header {
+    width: 100%;
+    background: #fff;
+    display: flex;
+    justify-self: start;
+    align-self: center;
   }
 }
 </style>

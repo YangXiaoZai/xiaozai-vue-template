@@ -1,3 +1,5 @@
+import path from 'path';
+import { isExternal } from '@/utils/validate';
 export default {
   data() {
     // 用户处理只有一个children
@@ -18,7 +20,11 @@ export default {
       if (showingChildren.length === 0) {
         // 无children
         // noShowingChildren
-        this.onlyOneChild = { ...parent, path: '', noShowingChildren: true };
+        this.onlyOneChild = {
+          ...parent,
+          path: '',
+          noShowingChildren: true,
+        };
         return true;
       }
 
@@ -28,6 +34,16 @@ export default {
       }
 
       return false;
+    },
+    // 解析path
+    resolvePath(basePath, routePath) {
+      if (isExternal(routePath)) {
+        return routePath;
+      }
+      if (isExternal(basePath)) {
+        return basePath;
+      }
+      return path.resolve(basePath, routePath);
     },
   },
 };
