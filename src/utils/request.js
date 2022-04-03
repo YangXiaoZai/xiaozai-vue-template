@@ -1,20 +1,21 @@
 import { message } from 'ant-design-vue';
 import axios from 'axios';
 import store from '@/store';
+
 import { getToken } from '@/utils/auth';
 
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
+  baseURL: process.env.VUE_APP_BASE_URL, // url = base url + request url
   timeout: 5000,
 });
 
-// aixos interceptor
+// axios interceptor
 // request interceptor
 service.interceptors.request.use(
   (config) => {
     if (store.getters.token) {
       // 'Authorization'可根据具体的业务更换
-      config.headers['Authorization'] = getToken();
+      config.headers['Authorization'] = 'Bear ' + getToken();
     }
     return config;
   },

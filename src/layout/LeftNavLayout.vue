@@ -7,6 +7,7 @@
     <a-layout>
       <a-layout-header class="layout-header">
         <Breadcrumb></Breadcrumb>
+        <UserMenu></UserMenu>
       </a-layout-header>
       <a-layout-content>
         <AppMain />
@@ -20,11 +21,12 @@ import Sidebar from '@/layout/components/Sidebar/index.vue';
 import AppMain from '@/layout/components/AppMain.vue';
 import Logo from '@/layout/components/Logo.vue';
 import Breadcrumb from '@/components/Breadcrumb/index.vue';
+import UserMenu from '@/layout/components/UserMenu/index.vue';
 
 import { mapState } from 'vuex';
 
 export default {
-  components: { Sidebar, AppMain, Logo, Breadcrumb },
+  components: { Sidebar, AppMain, Logo, Breadcrumb, UserMenu },
   data() {
     return {
       collapsed: false,
@@ -52,8 +54,8 @@ export default {
     width: 100%;
     background: #fff;
     display: flex;
-    justify-self: start;
-    align-self: center;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 </style>

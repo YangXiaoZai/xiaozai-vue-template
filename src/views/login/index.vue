@@ -5,8 +5,8 @@
       <h3 class="color-fff font-28 text-center">后台管理系统登录</h3>
 
       <a-form-model ref="loginFrom" :rules="rules" :model="loginFrom">
-        <a-form-model-item prop="user">
-          <a-input ref="user" v-model="loginFrom.user" size="large" placeholder="请输入账号">
+        <a-form-model-item prop="username">
+          <a-input ref="username" v-model.trim="loginFrom.username" size="large" placeholder="请输入账号">
             <a-icon slot="prefix" type="user" style="color: rgba(0, 0, 0, 0.25)" />
           </a-input>
         </a-form-model-item>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { setToken } from '@/utils/auth';
+import md5 from 'js-md5';
 
 export default {
   components: {},
@@ -40,11 +40,11 @@ export default {
     return {
       redirect: '',
       loginFrom: {
-        user: '',
+        username: '',
         password: '',
       },
       rules: {
-        user: [{ required: true, message: '请输入账号', trigger: 'blur' }],
+        username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
         password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
       },
       loading: false,
@@ -64,8 +64,8 @@ export default {
   created() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    if (this.loginFrom.user === '') {
-      this.$refs.user.focus();
+    if (this.loginFrom.username === '') {
+      this.$refs.username.focus();
     } else if (this.loginFrom.password === '') {
       this.$refs.password.focus();
     }
@@ -82,16 +82,24 @@ export default {
       this.$refs.loginFrom.validate((valid) => {
         if (valid) {
           this.loading = true;
-          // 没有后台API支持，暂时先如此
-          setToken('admin');
-          this.$router.push(this.redirect || '/');
 
-          // this.$store.dispatch('user/login', this.loginFrom)
-          //   .then(() => {
-          //     this.$router.push(this.redirect || '/');
-          //   }).finally(() => {
-          //     this.loading = false;
-          //   });
+          // 没有后台API支持，可暂时如此
+          // setToken('admin');
+          // this.$router.push(this.redirect || '/');
+
+          let params = {
+            ...this.loginFrom,
+            password: md5(this.loginFrom.password),
+          };
+          this.$store
+            .dispatch('user/login', params)
+            .then(() => {
+              this.$message.success('登录成功');
+              this.$router.push(this.redirect || '/');
+            })
+            .finally(() => {
+              this.loading = false;
+            });
         } else {
           console.log('未通过验证');
         }

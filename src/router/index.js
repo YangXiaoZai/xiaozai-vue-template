@@ -5,6 +5,7 @@ import Router from 'vue-router';
 import layout from '@/layout/index.vue';
 // modules
 import nestedRouter from './modules/nested';
+import userRouter from './modules/user';
 
 Vue.use(Router);
 
@@ -78,6 +79,8 @@ export const constantRoutes = [
     path: '/test',
     component: layout,
     meta: {
+      title: '测试',
+      icon: 'dashboard',
       breadcrumb: false,
     },
     children: [
@@ -90,10 +93,29 @@ export const constantRoutes = [
           breadcrumb: false,
         },
       },
+      {
+        path: 'sessionLogin',
+        component: () => import('@/views/test1/sessionLogin.vue'),
+        meta: {
+          title: '通过session登录',
+          icon: 'dashboard',
+          breadcrumb: false,
+        },
+      },
+      {
+        path: 'jwtLogin',
+        component: () => import('@/views/test1/jwtLogin.vue'),
+        meta: {
+          title: '通过jwt登录',
+          icon: 'dashboard',
+          breadcrumb: false,
+        },
+      },
     ],
   },
   // TODO 404，401
   nestedRouter,
+  userRouter,
 ];
 
 // 根据权限动态设置
