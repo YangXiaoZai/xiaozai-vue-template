@@ -39,6 +39,7 @@ export const constantRoutes = [
     hidden: true,
     component: () => import('@/views/login/index.vue'),
   },
+  // 首页
   {
     path: '/',
     name: 'Index', //首页name必须为Index,面包屑根据此判断
@@ -57,20 +58,39 @@ export const constantRoutes = [
           icon: 'dashboard',
         },
       },
+    ],
+  },
+  // 权限页面
+  {
+    path: '/permission',
+    name: 'Permission',
+    component: layout,
+    alwaysShow: true, //不论children的length是否为1，始终展示
+    meta: {
+      title: '权限测试',
+      icon: 'deployment-unit',
+      roles: ['admin', 'editor'],
+    },
+    redirect: '/permission/directive',
+    children: [
       {
-        path: 'dashboard1',
-        component: () => import('@/views/dashboard/index.vue'),
+        path: 'page',
+        name: 'PermissionPage',
+        component: () => import(/* webpackChunkName: "permission" */ '@/views/permission/page.vue'),
         meta: {
-          title: '看板1',
-          icon: 'dashboard',
+          title: '页面测试',
+          icon: 'deployment-unit',
+          roles: ['admin'],
         },
       },
       {
-        path: 'dashboard2',
-        component: () => import('@/views/dashboard/index.vue'),
+        path: 'directive',
+        name: 'PermissionDirective',
+        component: () => import(/* webpackChunkName: "permission" */ '@/views/permission/directive.vue'),
         meta: {
-          title: '看板2',
-          icon: 'dashboard',
+          title: '指令测试',
+          icon: 'deployment-unit',
+          roles: ['admin', 'editor'],
         },
       },
     ],
