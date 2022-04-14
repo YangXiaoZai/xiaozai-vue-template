@@ -8,10 +8,20 @@ export function login(data) {
   });
 }
 
-export function getInfo(token) {
+// 获取用户基本信息
+export function getInfo(params) {
   return request({
-    url: '/vue-element-admin/user/info',
+    url: '/user/info',
     method: 'get',
-    params: { token },
+    params,
+  });
+}
+
+// 更新取用户基本信息
+export function updateInfo(data) {
+  return request({
+    url: '/user/info',
+    method: 'post',
+    data,
   });
 }

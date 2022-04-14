@@ -10,7 +10,6 @@ function hasPermission(route, roles) {
 // 根据权限过滤出路由表
 export function filterAsyncRoutes(routes, roles) {
   const res = [];
-  console.log('routes', routes);
   routes.forEach((route) => {
     if (hasPermission(route, roles)) {
       if (route.children) {

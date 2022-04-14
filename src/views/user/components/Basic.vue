@@ -9,13 +9,16 @@
         <a-input v-model="form.nickname" />
       </a-form-model-item>
       <a-form-model-item label="手机号">
-        <a-input v-model="form.phone" />
+        <a-input v-model.number="form.phone" />
+      </a-form-model-item>
+      <a-form-model-item label="邮箱">
+        <a-input v-model="form.email" />
       </a-form-model-item>
       <a-form-model-item label="个人简介">
         <a-input v-model="form.introduction" />
       </a-form-model-item>
       <a-form-model-item>
-        <a-button type="primary">更新资料</a-button>
+        <a-button type="primary" :loading="loading" @click="updateInfo">更新资料</a-button>
       </a-form-model-item>
     </a-form-model>
 
@@ -24,6 +27,8 @@
 </template>
 
 <script>
+import validator from 'validator';
+import { getInfo, updateInfo } from '@/api/user';
 export default {
   components: {},
   data() {
@@ -31,13 +36,18 @@ export default {
       form: {
         username: '',
         nickname: '',
+        phone: '',
+        email: '',
         introduction: '',
       },
+      loading: false,
     };
   },
   computed: {},
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+    this.getInfo();
+  },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
   beforeCreate() {}, // 生命周期 - 创建之前
@@ -47,7 +57,36 @@ export default {
   beforeDestroy() {}, // 生命周期 - 销毁之前
   destroyed() {}, // 生命周期 - 销毁完成
   activated() {}, // 如果页面有keep-alive缓存功能，这个函数会触发
-  methods: {},
+  methods: {
+    async getInfo() {
+      const { data } = await getInfo();
+      this.form = data;
+    },
+    async updateInfo() {
+      if (this.form.phone && !validator.isMobilePhone(String(this.form.phone), 'zh-CN')) {
+        this.$message.warn('您输入的手机号码有误');
+        return;
+      }
+      if (this.form.email && !validator.isEmail(this.form.email)) {
+        this.$message.warn('您输入的邮箱有误');
+        return;
+      }
+      const params = {
+        ...this.form,
+      };
+      this.loading = true;
+      try {
+        const { data } = await updateInfo(params);
+        this.loading = false;
+        if (data) {
+          this.$message.success('更新成功');
+        }
+      } catch (error) {
+        this.loading = false;
+        throw error;
+      }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>
