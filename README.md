@@ -70,3 +70,5 @@
 ##### 引用的插件
 
 - [x] [validator，常用的验证插件](https://github.com/validatorjs/validator.js)
+
+- [x] [vue-cropper，vue图片裁剪工具](https://github.com/xyxiao001/vue-cropper)
