@@ -38,6 +38,12 @@ module.exports = {
       },
     },
   },
+  pluginOptions: {
+    'style-resources-loader': {
+      preProcessor: 'less',
+      patterns: [path.join(__dirname, 'src/styles/*.less')],
+    },
+  },
   configureWebpack: {
     name,
     plugins: [createThemeColorReplacerPlugin()],
