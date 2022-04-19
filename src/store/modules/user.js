@@ -1,5 +1,5 @@
 import { getToken, setToken, removeToken } from '@/utils/auth';
-import { login, getInfo } from '@/api/user';
+import { login, getInfo, updateInfo } from '@/api/user';
 
 const state = {
   token: getToken(),
@@ -12,15 +12,6 @@ const mutations = {
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles;
-  },
-  SET_NAME: (state, nickname) => {
-    state.nickname = nickname;
-  },
-  SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar;
-  },
-  SET_INTRODUCTION: (state, introduction) => {
-    state.introduction = introduction;
   },
   SET_USER_INFO: (state, userInfo) => {
     state.userInfo = userInfo;
@@ -47,18 +38,31 @@ const actions = {
     return new Promise((resolve, reject) => {
       getInfo()
         .then((res) => {
+          let { data } = res;
           // 拿roles
-          const { roles, nickname, avatar, introduction } = res?.data;
+          const { roles } = data;
           if (!roles || roles.length <= 0) {
             reject(new Error('getInfo接口roles必须为数组'));
           }
-
           commit('SET_ROLES', roles);
-          commit('SET_NAME', nickname);
-          commit('SET_AVATAR', avatar);
-          commit('SET_INTRODUCTION', introduction);
+          commit('SET_USER_INFO', data);
 
           resolve(res.data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  },
+  updateInfo({ dispatch }, userInfo) {
+    return new Promise((resolve, reject) => {
+      updateInfo(userInfo)
+        .then((res) => {
+          const { data } = res;
+          if (data) {
+            dispatch('getInfo');
+            resolve(res);
+          }
         })
         .catch((err) => {
           reject(err);
@@ -69,9 +73,6 @@ const actions = {
     commit('SET_TOKEN', null);
     commit('SET_ROLES', null);
     removeToken();
-  },
-  getUserInfo({ commit }) {
-    commit('SET_USER_INFO', null);
   },
 };
 export default {

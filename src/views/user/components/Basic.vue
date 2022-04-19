@@ -18,19 +18,29 @@
         <a-input v-model="form.introduction" />
       </a-form-model-item>
       <a-form-model-item>
-        <a-button type="primary" :loading="loading" @click="updateInfo">更新资料</a-button>
+        <a-button type="primary" :loading="loading" @click="updateUserInfo">更新资料</a-button>
       </a-form-model-item>
     </a-form-model>
 
-    <div class="avatar-container"></div>
+    <div class="avatar-container" @click="modal.visible = true">
+      <img v-if="form.avatar" class="avatar" :src="fileBaseUrl + form.avatar" />
+      <a-icon type="plus" class="avatar-hover" />
+    </div>
+
+    <!-- 图片裁剪 -->
+    <Cropper :modal="modal" @getCorpImg="getCorpImg"> </Cropper>
   </div>
 </template>
 
 <script>
+import { deepClone } from '@/utils/index';
 import validator from 'validator';
-import { getInfo, updateInfo } from '@/api/user';
+import Cropper from '@/components/Cropper';
+import { mapState, mapActions } from 'vuex';
+import { upload } from '@/api/upload';
+
 export default {
-  components: {},
+  components: { Cropper },
   data() {
     return {
       form: {
@@ -39,14 +49,22 @@ export default {
         phone: '',
         email: '',
         introduction: '',
+        avatar: '',
       },
       loading: false,
+      modal: {
+        title: '裁剪头像',
+        visible: false,
+      },
+      fileBaseUrl: process.env.VUE_APP_FILE_BASE_URL,
     };
   },
-  computed: {},
+  computed: {
+    ...mapState('user', ['userInfo']),
+  },
   // 生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    this.getInfo();
+    this.form = deepClone(this.userInfo);
   },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
@@ -58,11 +76,9 @@ export default {
   destroyed() {}, // 生命周期 - 销毁完成
   activated() {}, // 如果页面有keep-alive缓存功能，这个函数会触发
   methods: {
-    async getInfo() {
-      const { data } = await getInfo();
-      this.form = data;
-    },
-    async updateInfo() {
+    ...mapActions('user', ['updateInfo']),
+    // 更新信息
+    async updateUserInfo() {
       if (this.form.phone && !validator.isMobilePhone(String(this.form.phone), 'zh-CN')) {
         this.$message.warn('您输入的手机号码有误');
         return;
@@ -76,7 +92,8 @@ export default {
       };
       this.loading = true;
       try {
-        const { data } = await updateInfo(params);
+        // const { data } = await this.$store.dispatch('user/updateInfo', params);
+        const { data } = await this.updateInfo(params);
         this.loading = false;
         if (data) {
           this.$message.success('更新成功');
@@ -85,6 +102,17 @@ export default {
         this.loading = false;
         throw error;
       }
+    },
+    // 上传图片（点击上传按钮）
+    async getCorpImg({ data, filename }) {
+      const formData = new FormData();
+      formData.append('file', data, filename);
+      const {
+        data: { path },
+      } = await upload(formData);
+      this.form.avatar = path;
+      this.$message.success('上传成功');
+      this.modal.visible = false;
     },
   },
 };
@@ -101,7 +129,31 @@ export default {
     height: 180px;
     margin-left: 100px;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 20px rgba(143, 168, 191, 0.35);
+    position: relative;
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+    .avatar-hover {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 46px;
+      color: blue;
+      opacity: 0;
+      transition: 500ms;
+    }
+    &:hover {
+      .avatar-hover {
+        opacity: 1;
+      }
+      .avatar {
+        opacity: 0.6;
+      }
+    }
   }
 }
 </style>

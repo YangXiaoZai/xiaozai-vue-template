@@ -1,9 +1,11 @@
 <!-- 用户菜单 -->
 <template>
   <a-dropdown>
-    <div>
-      <img src="~@/assets/user/author.png" alt="用户头像" class="user-avatar" />
-      <span>小在</span>
+    <div class="user-info">
+      <img v-if="userInfo.avatar" :src="fileBaseUrl + userInfo.avatar" alt="用户头像" class="user-avatar" />
+      <!-- <img v-else src="~@/assets/user/author.png" alt="用户头像" /> -->
+      <a-icon v-else type="user" class="user-avatar" />
+      <span>{{ userInfo.nickname || '用户' }}</span>
     </div>
     <a-menu slot="overlay">
       <a-menu-item> <router-link to="/user">个人中心 </router-link></a-menu-item>
@@ -14,23 +16,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
-  components: {},
   data() {
-    return {};
+    return {
+      fileBaseUrl: process.env.VUE_APP_FILE_BASE_URL,
+    };
   },
-  computed: {},
-  // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
-  // 生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
-  beforeCreate() {}, // 生命周期 - 创建之前
-  beforeMount() {}, // 生命周期 - 挂载之前
-  beforeUpdate() {}, // 生命周期 - 更新之前
-  updated() {}, // 生命周期 - 更新之后
-  beforeDestroy() {}, // 生命周期 - 销毁之前
-  destroyed() {}, // 生命周期 - 销毁完成
-  activated() {}, // 如果页面有keep-alive缓存功能，这个函数会触发
+  computed: {
+    ...mapGetters(['userInfo']),
+  },
   methods: {
     async logout() {
       await this.$store.dispatch('user/logout');
@@ -41,12 +36,18 @@ export default {
 </script>
 <style lang="less" scoped>
 .container {
-  .user-avatar {
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    margin-right: 6px;
+  .user-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .user-avatar {
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      font-size: 40px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
   }
 }
 </style>
