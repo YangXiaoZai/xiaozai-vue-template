@@ -1,127 +1,109 @@
-<!--  -->
 <template>
-  <div class="container">
-    <h1>test page</h1>
-    <input v-model="id" type="text" />
-    <button @click="getData(id)">查询</button>
-    <button @click="handleCreateClick">新增</button>
-    <ul>
-      <li v-for="(item, index) in data" :key="index">
-        <span>{{ item.name }} - {{ item.class }}</span>
-        <button @click="handleUpdateClick(item.id)">更新</button>
-        <button @click="handleDeleteClick(item.id)">删除</button>
-      </li>
-    </ul>
-    <a-modal ref="form" v-model="modalVisible" @ok="handleModalOK" @cancel="handleModalClose">
-      <a-form-model-item label="姓名">
-        <a-input v-model="form.name" />
+  <div>
+    <h3 class="title">点击右侧⚙，修改主题色后可在此测试</h3>
+    <a-form-model ref="ruleForm" :model="form" :rules="rules" :label-col="labelCol" :wrapper-col="wrapperCol">
+      <a-form-model-item ref="name" label="Activity name" prop="name">
+        <a-input
+          v-model="form.name"
+          @blur="
+            () => {
+              $refs.name.onFieldBlur();
+            }
+          "
+        />
       </a-form-model-item>
-      <a-form-model-item label="班级">
-        <a-input v-model="form.class" />
+      <a-form-model-item label="Activity zone" prop="region">
+        <a-select v-model="form.region" placeholder="please select your zone">
+          <a-select-option value="shanghai"> Zone one </a-select-option>
+          <a-select-option value="beijing"> Zone two </a-select-option>
+        </a-select>
       </a-form-model-item>
-    </a-modal>
+      <a-form-model-item label="Activity time" required prop="date1">
+        <a-date-picker v-model="form.date1" show-time type="date" placeholder="Pick a date" style="width: 100%" />
+      </a-form-model-item>
+      <a-form-model-item label="Instant delivery" prop="delivery">
+        <a-switch v-model="form.delivery" />
+      </a-form-model-item>
+      <a-form-model-item label="Activity type" prop="type">
+        <a-checkbox-group v-model="form.type">
+          <a-checkbox value="1" name="type"> Online </a-checkbox>
+          <a-checkbox value="2" name="type"> Promotion </a-checkbox>
+          <a-checkbox value="3" name="type"> Offline </a-checkbox>
+        </a-checkbox-group>
+      </a-form-model-item>
+      <a-form-model-item label="Resources" prop="resource">
+        <a-radio-group v-model="form.resource">
+          <a-radio value="1"> Sponsor </a-radio>
+          <a-radio value="2"> Venue </a-radio>
+        </a-radio-group>
+      </a-form-model-item>
+      <a-form-model-item label="Activity form" prop="desc">
+        <a-input v-model="form.desc" type="textarea" />
+      </a-form-model-item>
+      <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
+        <a-button type="primary" @click="onSubmit"> Create </a-button>
+        <a-button style="margin-left: 10px" @click="resetForm"> Reset </a-button>
+        <a-button type="link" style="margin-left: 10px"> link </a-button>
+      </a-form-model-item>
+    </a-form-model>
   </div>
 </template>
-
 <script>
 export default {
-  components: {},
   data() {
     return {
-      id: null,
-      data: [],
-      modalVisible: false,
+      labelCol: { span: 4 },
+      wrapperCol: { span: 14 },
+      other: '',
       form: {
         name: '',
-        class: '',
-        id: null,
+        region: undefined,
+        date1: undefined,
+        delivery: false,
+        type: [],
+        resource: '',
+        desc: '',
       },
-      url: process.env.VUE_APP_BASE_URL + '/class',
+      rules: {
+        name: [
+          { required: true, message: 'Please input Activity name', trigger: 'blur' },
+          { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
+        ],
+        region: [{ required: true, message: 'Please select Activity zone', trigger: 'change' }],
+        date1: [{ required: true, message: 'Please pick a date', trigger: 'change' }],
+        type: [
+          {
+            type: 'array',
+            required: true,
+            message: 'Please select at least one activity type',
+            trigger: 'change',
+          },
+        ],
+        resource: [{ required: true, message: 'Please select activity resource', trigger: 'change' }],
+        desc: [{ required: true, message: 'Please input activity form', trigger: 'blur' }],
+      },
     };
   },
-  computed: {},
-  // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {
-    this.getData();
-  },
-  // 生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
-  beforeCreate() {}, // 生命周期 - 创建之前
-  beforeMount() {}, // 生命周期 - 挂载之前
-  beforeUpdate() {}, // 生命周期 - 更新之前
-  updated() {}, // 生命周期 - 更新之后
-  beforeDestroy() {}, // 生命周期 - 销毁之前
-  destroyed() {}, // 生命周期 - 销毁完成
-  activated() {}, // 如果页面有keep-alive缓存功能，这个函数会触发
   methods: {
-    async getData(id = '', key = 'data') {
-      let res;
-      if (id) {
-        res = await fetch(`${this.url}/${id}`);
-      } else {
-        res = await fetch(this.url);
-      }
-      const { data } = await res.json();
-      this[key] = data;
-    },
-    async handleDeleteClick(id) {
-      await fetch(`${this.url}/${id}`, {
-        method: 'DELETE',
+    onSubmit() {
+      this.$refs.ruleForm.validate((valid) => {
+        if (valid) {
+          alert('submit!');
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
       });
-      this.getData();
     },
-    async add() {
-      await fetch(this.url, {
-        method: 'POST',
-        body: JSON.stringify(this.form),
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-        },
-      });
-      this.getData();
-      this.modalVisible = false;
-    },
-    async update(id) {
-      await fetch(`${this.url}/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify(this.form),
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-        },
-      });
-      this.getData();
-      this.modalVisible = false;
-    },
-    handleCreateClick() {
-      this.modalVisible = true;
-    },
-    async handleUpdateClick(id) {
-      await this.getData(id, 'form');
-      this.form = this.form[0];
-      this.form.id = id;
-      this.modalVisible = true;
-    },
-    async handleModalOK() {
-      let id = this.form.id;
-      if (id) {
-        await this.update(id);
-      } else {
-        await this.add();
-      }
-      this.handleModalClose();
-    },
-    handleModalClose() {
-      this.form = {
-        name: '',
-        class: '',
-        id: null,
-      };
+    resetForm() {
+      this.$refs.ruleForm.resetFields();
     },
   },
 };
 </script>
 <style lang="less" scoped>
-.container {
-  color: @commonWidth;
+.title {
+  text-align: center;
+  color: @primaryColor;
 }
 </style>
