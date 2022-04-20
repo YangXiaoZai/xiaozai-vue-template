@@ -29,7 +29,7 @@ export default {
     // 主题色
     theme: {
       type: String,
-      default: '',
+      default: 'theme',
     },
     // X轴
     xAxis: {
@@ -111,22 +111,22 @@ export default {
       }),
     },
     // 颜色
-    color: {
-      // 颜色数组
-      type: Array,
-      default: () => [
-        '#3ba0ff',
-        '#4ecb73',
-        '#fad337',
-        '#995d7f',
-        '#f04864',
-        '#975fe4',
-        '#36cbcb',
-        '#8aabcc',
-        '#779649',
-        '#cc5d20',
-      ],
-    },
+    // color: {
+    //   // 颜色数组
+    //   type: Array,
+    //   default: () => [
+    //     '#3ba0ff',
+    //     '#4ecb73',
+    //     '#fad337',
+    //     '#995d7f',
+    //     '#f04864',
+    //     '#975fe4',
+    //     '#36cbcb',
+    //     '#8aabcc',
+    //     '#779649',
+    //     '#cc5d20',
+    //   ],
+    // },
     // 其他配置
     otherOption: {
       type: Object,
@@ -139,6 +139,14 @@ export default {
     };
   },
   computed: {},
+  watch: {
+    chartData: {
+      deep: true,
+      handler() {
+        this.initChart();
+      },
+    },
+  },
   // 生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
@@ -185,7 +193,7 @@ export default {
         xAxis: this.xAxis,
         yAxis: this.yAxis,
         dataZoom: this.dataZoom,
-        color: this.color,
+        // color: this.color,
       });
     },
   },

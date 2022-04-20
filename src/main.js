@@ -8,6 +8,17 @@ import { themeColor } from './settings';
 // 设置全局主题色CSS变量
 document.body.style.setProperty('--themeColor', themeColor);
 
+// 设置echart主题
+import * as echarts from 'echarts';
+
+// 可根据自己需求引用不同的echart图标
+// 文件可在此导出 https://echarts.apache.org/zh/theme-builder.html
+// import wonderland from '@/assets/echarts/wonderland.project.json';
+// echarts.registerTheme('theme', wonderland);
+
+import walden from '@/assets/echarts/walden.project.json';
+echarts.registerTheme('theme', walden);
+
 // normalize标准化css
 import 'normalize.css/normalize.css';
 
