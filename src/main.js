@@ -3,6 +3,11 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
+// 引用主题色
+import { themeColor } from './settings';
+// 设置全局主题色CSS变量
+document.body.style.setProperty('--themeColor', themeColor);
+
 // normalize标准化css
 import 'normalize.css/normalize.css';
 

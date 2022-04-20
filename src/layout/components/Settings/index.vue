@@ -98,6 +98,7 @@ export default {
       // 主题色特殊处理
       if (key === 'themeColor') {
         this.updateTheme(value);
+        document.body.style.setProperty('--themeColor', value);
       }
     },
     updateTheme(newPrimaryColor) {
