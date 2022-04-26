@@ -10,7 +10,7 @@
 
 <script>
 import PanelGroup from './components/PanelGroup';
-import ChartGroup from '@/views/dashboard/components/ChartGroup';
+import ChartGroup from './components/ChartGroup';
 export default {
   components: { PanelGroup, ChartGroup },
   data() {

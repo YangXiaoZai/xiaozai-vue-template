@@ -60,6 +60,8 @@
 
 <script>
 import { VueCropper } from 'vue-cropper';
+import { upload } from '@/api/upload';
+
 export default {
   components: { VueCropper },
   props: {
@@ -128,7 +130,18 @@ export default {
     // 上传图片（点击上传按钮）
     async saveImg() {
       this.$refs.cropper.getCropBlob(async (data) => {
-        this.$emit('getCorpImg', { data, filename: this.filename });
+        const formData = new FormData();
+        formData.append('file', data, this.filename);
+        try {
+          const {
+            data: { path, filename },
+          } = await upload(formData);
+          this.$message.success('上传成功');
+          this.$emit('getCorpImg', { path, filename });
+          this.modal.visible = false;
+        } catch (error) {
+          this.$message.success('上传失败');
+        }
       });
     },
   },

@@ -6,6 +6,7 @@ import layout from '@/layout/index.vue';
 // modules
 import nestedRouter from './modules/nested';
 import userRouter from './modules/user';
+import article from './modules/article';
 
 Vue.use(Router);
 
@@ -136,6 +137,7 @@ export const constantRoutes = [
   // TODO 404，401
   nestedRouter,
   userRouter,
+  article,
 ];
 
 // 根据权限动态设置

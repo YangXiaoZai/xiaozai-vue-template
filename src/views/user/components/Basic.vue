@@ -37,7 +37,6 @@ import { deepClone } from '@/utils/index';
 import validator from 'validator';
 import Cropper from '@/components/Cropper';
 import { mapState, mapActions } from 'vuex';
-import { upload } from '@/api/upload';
 
 export default {
   components: { Cropper },
@@ -104,15 +103,8 @@ export default {
       }
     },
     // 上传图片（点击上传按钮）
-    async getCorpImg({ data, filename }) {
-      const formData = new FormData();
-      formData.append('file', data, filename);
-      const {
-        data: { path },
-      } = await upload(formData);
+    async getCorpImg({ path }) {
       this.form.avatar = path;
-      this.$message.success('上传成功');
-      this.modal.visible = false;
     },
   },
 };
@@ -142,7 +134,7 @@ export default {
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 46px;
-      color: blue;
+      color: @primaryColor;
       opacity: 0;
       transition: 500ms;
     }

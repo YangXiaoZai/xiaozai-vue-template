@@ -1,7 +1,7 @@
 import NProgress from 'nprogress'; // progress bar
 import router from './router';
 import store from './store';
-// import { Message } from 'ant-design-vue';
+// import { message } from 'ant-design-vue';
 import 'nprogress/nprogress.css'; // progress bar style
 import { getToken } from '@/utils/auth'; // 通过cookie获取token
 import setPageTitle from '@/utils/set-page-title';
