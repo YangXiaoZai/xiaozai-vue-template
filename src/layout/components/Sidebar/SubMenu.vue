@@ -3,22 +3,24 @@
   <a-sub-menu :key="menuInfo.path" v-bind="$props" v-on="$listeners">
     <MsgItem slot="title" :menu-info="menuInfo" />
     <template v-for="item in menuInfo.children">
-      <MenuItem
-        v-if="
-          hasOneShowingChild(item.children, item.children, item) &&
-          (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
-          !item.alwaysShow
-        "
-        :key="resolvePath(basePath, item.path)"
-        :menu-info="item"
-        :base-path="basePath"
-      />
-      <SubMenu
-        v-else
-        :key="resolvePath(basePath, item.path)"
-        :menu-info="item"
-        :base-path="resolvePath(basePath, item.path)"
-      />
+      <template v-if="!item.hidden">
+        <MenuItem
+          v-if="
+            hasOneShowingChild(item.children, item) &&
+            (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
+            !item.alwaysShow
+          "
+          :key="resolvePath(basePath, item.path)"
+          :menu-info="item"
+          :base-path="basePath"
+        />
+        <SubMenu
+          v-else
+          :key="resolvePath(basePath, item.path)"
+          :menu-info="item"
+          :base-path="resolvePath(basePath, item.path)"
+        />
+      </template>
     </template>
   </a-sub-menu>
 </template>
