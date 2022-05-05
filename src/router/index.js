@@ -40,6 +40,18 @@ export const constantRoutes = [
     hidden: true,
     component: () => import('@/views/login/index.vue'),
   },
+  {
+    path: '/403',
+    name: '403',
+    hidden: true,
+    component: () => import(/* webpackChunkName: "exception" */ '@/views/exception/403.vue'),
+  },
+  {
+    path: '/404',
+    name: '404',
+    hidden: true,
+    component: () => import(/* webpackChunkName: "exception" */ '@/views/exception/404.vue'),
+  },
   // 首页
   {
     path: '/',
@@ -134,9 +146,36 @@ export const constantRoutes = [
       },
     ],
   },
-  // TODO 404，401
   nestedRouter,
   userRouter,
+  {
+    path: '/exception',
+    name: 'Exception',
+    component: layout,
+    redirect: '/exception/404',
+    meta: {
+      title: '异常页面',
+      icon: 'dashboard',
+    },
+    children: [
+      {
+        meta: {
+          title: '403',
+          icon: 'dashboard',
+        },
+        path: '403',
+        component: () => import(/* webpackChunkName: "exception" */ '@/views/exception/403.vue'),
+      },
+      {
+        meta: {
+          title: '404',
+          icon: 'dashboard',
+        },
+        path: '404',
+        component: () => import(/* webpackChunkName: "exception" */ '@/views/exception/404.vue'),
+      },
+    ],
+  },
   {
     path: '/donate',
     name: 'Donate',
@@ -152,6 +191,11 @@ export const constantRoutes = [
         component: () => import(/* webpackChunkName: "donate" */ '@/views/donate/index.vue'),
       },
     ],
+  },
+  {
+    path: '*',
+    hidden: true,
+    redirect: '/404',
   },
 ];
 
