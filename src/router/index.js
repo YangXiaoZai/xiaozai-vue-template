@@ -137,100 +137,26 @@ export const constantRoutes = [
   // TODO 404，401
   nestedRouter,
   userRouter,
-  article,
-];
-
-// 根据权限动态设置
-export const asyncRoutes = [
   {
-    path: 'http://www.baidu.com',
-    // name: 'District',
-    component: () => import(/* webpackChunkName: "map" */ '@/views/map/district.vue'),
-    meta: {
-      title: '地图',
-      icon: 'dashboard',
-      roles: ['admin', 'editor'],
-    },
-    // children: [{
-    //   path: '/district1',
-    //   name: 'District1',
-    //   component: () => import(/* webpackChunkName: "map" */ '@/views/map/district.vue'),
-    //   meta: {
-    //     title: '地图',
-    //     icon: 'dashboard',
-    //     roles: ['admin', 'editor'],
-    //   },
-    // }],
-  },
-  {
-    path: '/about',
-    name: 'About',
+    path: '/donate',
+    name: 'Donate',
     component: layout,
-    meta: {
-      roles: ['admin'],
-    },
+    redirect: '/donate/index',
     children: [
       {
-        path: 'index',
-        component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
         meta: {
-          title: '关于',
+          title: '捐赠作者',
           icon: 'dashboard',
         },
+        path: 'index',
+        component: () => import(/* webpackChunkName: "donate" */ '@/views/donate/index.vue'),
       },
     ],
   },
 ];
 
-// const routes = [
-//   {
-//     path: '/login',
-//     name: 'Login',
-//     component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
-//   },
-//   {
-//     path: '/',
-//     redirect: '/dashboard',
-//     component: layout,
-//     children: [
-//       {
-//         path: 'dashboard',
-//         component: () => import('@/views/dashboard/index.vue'),
-//         name: 'Dashboard',
-//         meta: { title: 'Dashboard', icon: 'dashboard', affix: true },
-//       },
-//     ],
-//   },
-//   {
-//     path: '/map',
-//     name: 'Map',
-//     // component: () => import(/* webpackChunkName: "map" */'@/views/map/index.vue'),
-//     redirect: '/map/home',
-//     children: [
-//       {
-//         path: 'home',
-//         component: () => import(/* webpackChunkName: "map" */ '@/views/map/index.vue'),
-//         name: 'mapHome',
-//       }, {
-//         path: 'district',
-//         component: () => import(/* webpackChunkName: "map" */ '@/views/map/district.vue'),
-//       },
-//     ],
-//   },
-//   {
-//     path: '/district',
-//     component: () => import(/* webpackChunkName: "map" */ '@/views/map/district.vue'),
-//     name: 'district',
-//   },
-//   {
-//     path: '/about',
-//     name: 'About',
-//     // route level code-splitting
-//     // this generates a separate chunk (about.[hash].js) for this route
-//     // which is lazy-loaded when the route is visited.
-//     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-//   },
-// ];
+// 根据权限动态设置
+export const asyncRoutes = [article];
 
 const createRouter = () =>
   new Router({
@@ -243,8 +169,6 @@ const createRouter = () =>
 
 const router = createRouter();
 
-// TODO查看详情
-// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
   const newRouter = createRouter();
   router.matcher = newRouter.matcher; // reset router
