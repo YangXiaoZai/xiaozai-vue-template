@@ -74,21 +74,26 @@ const columns = [
     title: '封面',
     dataIndex: 'cover',
     key: 'cover',
+    align: 'center',
+
     scopedSlots: { customRender: 'cover' },
   },
   {
     title: '更新日期',
     dataIndex: 'updatedAt',
     key: 'updatedAt',
+    align: 'center',
   },
   {
     title: '发布日期',
     dataIndex: 'createdAt',
     key: 'createdAt',
+    align: 'center',
   },
   {
     title: '操作',
     key: 'action',
+    align: 'center',
     scopedSlots: { customRender: 'action' },
   },
 ];
@@ -117,8 +122,8 @@ export default {
   },
   computed: {},
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {
-    this.getArticleType();
+  async created() {
+    await this.getArticleType();
     this.getArticle();
   },
   // 生命周期 - 挂载完成（可以访问DOM元素）
@@ -147,7 +152,11 @@ export default {
       const {
         data: { rows, count },
       } = await getArticle(params);
-      this.tableData = rows;
+      // 处理类型 （有时候会后台会处理，有时候需前端处理）
+      this.tableData = rows.map((item) => {
+        item.type = this.articleType.find((type) => item.type == type.code)['name'];
+        return item;
+      });
       this.pagination.total = count;
       this.tableLoading = false;
     },
@@ -158,9 +167,10 @@ export default {
     },
     // 重置
     reset() {
-      // TODO优化
       this.form.title = null;
       this.form.type = undefined;
+      this.pagination.current = 1;
+      this.pagination.pageSize = 10;
       this.getArticle();
     },
     async handleDelete({ id }) {
