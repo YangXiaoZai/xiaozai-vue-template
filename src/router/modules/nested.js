@@ -7,7 +7,7 @@ const nestedRouter = {
   component: layout,
   meta: {
     title: '嵌套路由',
-    icon: 'pic-center',
+    icon: 'ordered-list',
   },
   children: [
     {
@@ -16,7 +16,6 @@ const nestedRouter = {
       component: () => import('@/views/nested/menu1/index.vue'),
       meta: {
         title: '路由1',
-        icon: 'pic-center',
       },
     },
     {
@@ -26,7 +25,6 @@ const nestedRouter = {
       component: () => import('@/views/nested/menu2/index.vue'),
       meta: {
         title: '路由2',
-        icon: 'pic-center',
       },
       children: [
         {
@@ -35,7 +33,6 @@ const nestedRouter = {
           component: () => import('@/views/nested/menu2/menu2-1/index.vue'),
           meta: {
             title: '路由2-1',
-            icon: 'pic-center',
           },
         },
         {
@@ -45,7 +42,6 @@ const nestedRouter = {
           redirect: '/nested/menu2/menu2-2/menu2-2-1',
           meta: {
             title: '路由2-2',
-            icon: 'pic-center',
           },
           children: [
             {
@@ -54,7 +50,6 @@ const nestedRouter = {
               component: () => import('@/views/nested/menu2/menu2-2/menu2-2-1/index.vue'),
               meta: {
                 title: '路由2-2-1',
-                icon: 'pic-center',
               },
             },
             {
@@ -63,7 +58,6 @@ const nestedRouter = {
               component: () => import('@/views/nested/menu2/menu2-2/menu2-2-2/index.vue'),
               meta: {
                 title: '路由2-2-2',
-                icon: 'pic-center',
               },
             },
           ],

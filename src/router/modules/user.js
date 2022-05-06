@@ -7,7 +7,7 @@ const userRouter = {
   component: layout,
   meta: {
     title: '个人中心',
-    icon: 'pic-center',
+    icon: 'user',
   },
   children: [
     {
@@ -16,7 +16,7 @@ const userRouter = {
       component: () => import('@/views/user/index.vue'),
       meta: {
         title: '个人信息',
-        icon: 'pic-center',
+        icon: 'user',
       },
     },
   ],

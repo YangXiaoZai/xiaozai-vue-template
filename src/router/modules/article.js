@@ -7,7 +7,7 @@ const userRouter = {
   component: layout,
   meta: {
     title: '文章模块',
-    icon: 'pic-center',
+    icon: 'container',
   },
   children: [
     {
@@ -16,7 +16,6 @@ const userRouter = {
       component: () => import('@/views/article/list.vue'),
       meta: {
         title: '文章列表',
-        icon: 'book',
       },
     },
     {
@@ -25,18 +24,15 @@ const userRouter = {
       component: () => import('@/views/article/table.vue'),
       meta: {
         title: '文章表格',
-        icon: 'book',
       },
     },
     {
       path: 'create',
       name: 'createArticle',
-      // TODO 为什么设置hidden不生效
       hidden: true,
       component: () => import('@/views/article/create.vue'),
       meta: {
         title: '发布文章',
-        icon: 'container',
       },
     },
     {
@@ -46,7 +42,6 @@ const userRouter = {
       component: () => import('@/views/article/edit.vue'),
       meta: {
         title: '编辑文章',
-        icon: 'container',
       },
     },
     {
@@ -56,7 +51,6 @@ const userRouter = {
       component: () => import('@/views/article/preview.vue'),
       meta: {
         title: '预览文章',
-        icon: 'container',
       },
     },
   ],

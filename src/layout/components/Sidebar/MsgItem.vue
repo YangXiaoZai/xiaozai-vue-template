@@ -1,7 +1,7 @@
 <!-- item -->
 <template>
   <div>
-    <a-icon :type="menuInfo.meta.icon" />
+    <a-icon v-if="menuInfo.meta.icon" :type="menuInfo.meta.icon" />
     <span>{{ menuInfo.meta.title }}</span>
   </div>
 </template>

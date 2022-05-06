@@ -73,6 +73,10 @@ export const constantRoutes = [
       },
     ],
   },
+];
+
+// 根据权限动态设置
+export const asyncRoutes = [
   // 权限页面
   {
     path: '/permission',
@@ -92,7 +96,6 @@ export const constantRoutes = [
         component: () => import(/* webpackChunkName: "permission" */ '@/views/permission/page.vue'),
         meta: {
           title: '页面测试',
-          icon: 'deployment-unit',
           roles: ['admin'],
         },
       },
@@ -102,18 +105,19 @@ export const constantRoutes = [
         component: () => import(/* webpackChunkName: "permission" */ '@/views/permission/directive.vue'),
         meta: {
           title: '指令测试',
-          icon: 'deployment-unit',
           roles: ['admin', 'editor'],
         },
       },
     ],
   },
+  article,
+  nestedRouter,
   {
     path: '/test',
     component: layout,
     meta: {
-      title: '测试',
-      icon: 'dashboard',
+      title: '额外功能',
+      icon: 'rocket',
       breadcrumb: false,
     },
     children: [
@@ -121,32 +125,19 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/test1/index.vue'),
         meta: {
-          title: '测试',
-          icon: 'dashboard',
+          title: '主题修改',
           breadcrumb: false,
         },
       },
       {
-        path: 'sessionLogin',
-        component: () => import('@/views/test1/sessionLogin.vue'),
+        path: 'https://www.baidu.com',
         meta: {
-          title: '通过session登录',
-          icon: 'dashboard',
-          breadcrumb: false,
-        },
-      },
-      {
-        path: 'jwtLogin',
-        component: () => import('@/views/test1/jwtLogin.vue'),
-        meta: {
-          title: '通过jwt登录',
-          icon: 'dashboard',
+          title: '跳转外部链接',
           breadcrumb: false,
         },
       },
     ],
   },
-  nestedRouter,
   userRouter,
   {
     path: '/exception',
@@ -155,13 +146,12 @@ export const constantRoutes = [
     redirect: '/exception/404',
     meta: {
       title: '异常页面',
-      icon: 'dashboard',
+      icon: 'warning',
     },
     children: [
       {
         meta: {
           title: '403',
-          icon: 'dashboard',
         },
         path: '403',
         component: () => import(/* webpackChunkName: "exception" */ '@/views/exception/403.vue'),
@@ -169,7 +159,6 @@ export const constantRoutes = [
       {
         meta: {
           title: '404',
-          icon: 'dashboard',
         },
         path: '404',
         component: () => import(/* webpackChunkName: "exception" */ '@/views/exception/404.vue'),
@@ -185,7 +174,7 @@ export const constantRoutes = [
       {
         meta: {
           title: '捐赠作者',
-          icon: 'dashboard',
+          icon: 'smile',
         },
         path: 'index',
         component: () => import(/* webpackChunkName: "donate" */ '@/views/donate/index.vue'),
@@ -198,9 +187,6 @@ export const constantRoutes = [
     redirect: '/404',
   },
 ];
-
-// 根据权限动态设置
-export const asyncRoutes = [article];
 
 const createRouter = () =>
   new Router({
