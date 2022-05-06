@@ -42,12 +42,8 @@ export default {
   display: flex;
   align-items: center;
   padding: 0;
-  // max-width: 1200px;
-  // margin: auto;
 }
-.top-nav-menu {
-  margin-left: 20px;
-}
+
 .bg-fff {
   background: #fff !important;
   transition: all 0.3s;
@@ -55,6 +51,9 @@ export default {
 </style>
 <style lang="scss">
 $mainWidth: 1200px;
+.top-nav-layout-container {
+  min-height: 100vh !important;
+}
 .top-nav-layout-container {
   .top-nav-main,
   .content-main,
@@ -71,6 +70,7 @@ $mainWidth: 1200px;
     box-sizing: border-box;
   }
   .top-nav-menu {
+    margin-left: 20px;
     .ant-menu.ant-menu-dark .ant-menu-item-selected,
     .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
       background-color: transparent !important;
