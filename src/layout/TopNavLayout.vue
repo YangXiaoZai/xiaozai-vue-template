@@ -1,26 +1,29 @@
 <template>
-  <a-layout class="top-nav-layout-container">
-    <a-layout-header class="layout-header" :class="pageStyle == 'light' ? 'bg-fff' : ''">
-      <div class="top-nav-main flex-center">
+  <a-layout class="layout-container">
+    <a-layout-header class="layout-header" :class="pageStyle == 'light' ? 'bg-fff' : 'color-fff'">
+      <div class="top-main flex-between">
         <Logo></Logo>
-        <Sidebar class="top-nav-menu"></Sidebar>
+        <Sidebar class="top-nav"></Sidebar>
+        <UserMenu></UserMenu>
       </div>
     </a-layout-header>
-    <a-layout-content class="top-nav-layout">
+    <a-layout-content class="layout-content">
       <AppMain class="content-main" />
     </a-layout-content>
-    <a-layout-footer class="footer-main">Footer</a-layout-footer>
+    <a-layout-footer class="layout-footer"><Footer></Footer></a-layout-footer>
   </a-layout>
 </template>
 <script>
 import Sidebar from '@/layout/components/Sidebar/index.vue';
 import AppMain from '@/layout/components/AppMain.vue';
 import Logo from '@/layout/components/Logo.vue';
+import UserMenu from '@/layout/components/UserMenu/index.vue';
+import Footer from '@/layout/components/Footer.vue';
 
 import { mapState } from 'vuex';
 
 export default {
-  components: { Sidebar, AppMain, Logo },
+  components: { Sidebar, AppMain, Logo, UserMenu, Footer },
   data() {
     return {
       collapsed: false,
@@ -37,47 +40,55 @@ export default {
   created() {},
 };
 </script>
-<style lang="scss" scope>
-.layout-header {
-  display: flex;
-  align-items: center;
-  padding: 0;
-}
+<style lang="less" scoped>
+@mainWidth: 1400px;
+.layout-container {
+  min-height: 100vh;
+  box-sizing: border-box;
+  .layout-header {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    .top-nav {
+      margin-left: 20px;
+    }
+  }
+  .layout-content {
+    padding: 24px;
+    .content-main {
+      padding: 20px 0;
+      box-sizing: border-box;
+    }
+  }
+  .layout-footer {
+    padding: 0 50px 24px;
+  }
 
-.bg-fff {
-  background: #fff !important;
-  transition: all 0.3s;
-}
-</style>
-<style lang="scss">
-$mainWidth: 1200px;
-.top-nav-layout-container {
-  min-height: 100vh !important;
-}
-.top-nav-layout-container {
-  .top-nav-main,
-  .content-main,
-  .footer-main {
-    width: $mainWidth;
+  .top-main,
+  .content-main {
+    width: @mainWidth;
     margin: auto;
   }
-  .top-nav-main {
-    margin: inherit;
+  .bg-fff {
+    background: #fff !important;
+    transition: all 0.3s;
   }
-  .content-main,
-  .footer-main {
-    padding: 20px 0;
-    box-sizing: border-box;
+  .color-fff {
+    color: #fff;
   }
-  .top-nav-menu {
-    margin-left: 20px;
-    .ant-menu.ant-menu-dark .ant-menu-item-selected,
-    .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
-      background-color: transparent !important;
-    }
-    .ant-menu-horizontal {
-      border-bottom: 1px solid transparent;
-    }
+}
+.ant-layout-content {
+  min-height: auto;
+}
+</style>
+<style lang="less">
+.top-nav {
+  .ant-menu.ant-menu-dark .ant-menu-item-selected,
+  .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+    background-color: transparent !important;
+  }
+  .ant-menu-horizontal {
+    border-bottom: 1px solid transparent;
   }
 }
 </style>
