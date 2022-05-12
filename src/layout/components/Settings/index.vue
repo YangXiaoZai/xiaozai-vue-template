@@ -172,7 +172,7 @@ export default {
   }
 }
 </style>
-<style lang="less" scope>
+<style lang="less" scoped>
 @import '~ant-design-vue/lib/style/themes/index.less'; // 引入官方提供的theme
 
 .handle-item {

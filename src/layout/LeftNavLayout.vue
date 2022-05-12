@@ -9,10 +9,10 @@
         <Breadcrumb></Breadcrumb>
         <UserMenu></UserMenu>
       </a-layout-header>
-      <a-layout-content>
+      <a-layout-content class="layout-content">
         <AppMain />
       </a-layout-content>
-      <a-layout-footer></a-layout-footer>
+      <a-layout-footer class="layout-footer"><Footer></Footer></a-layout-footer>
     </a-layout>
   </a-layout>
 </template>
@@ -22,11 +22,12 @@ import AppMain from '@/layout/components/AppMain.vue';
 import Logo from '@/layout/components/Logo.vue';
 import Breadcrumb from '@/components/Breadcrumb/index.vue';
 import UserMenu from '@/layout/components/UserMenu/index.vue';
+import Footer from '@/layout/components/Footer.vue';
 
 import { mapState } from 'vuex';
 
 export default {
-  components: { Sidebar, AppMain, Logo, Breadcrumb, UserMenu },
+  components: { Sidebar, AppMain, Logo, Breadcrumb, UserMenu, Footer },
   data() {
     return {
       collapsed: false,
@@ -44,18 +45,20 @@ export default {
   created() {},
 };
 </script>
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .layout-container {
   height: 100vh;
-  .ant-layout-content {
-    padding: 24px;
-  }
   .layout-header {
-    width: 100%;
     background: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  .ant-layout-content {
+    min-height: auto;
+  }
+  .layout-footer {
+    padding: 0 50px 24px;
   }
 }
 </style>

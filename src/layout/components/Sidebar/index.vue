@@ -82,5 +82,8 @@ export default {
 </script>
 <style scoped>
 .container {
+  height: calc(100% - 15px);
+  overflow: scroll;
+  box-sizing: border-box;
 }
 </style>

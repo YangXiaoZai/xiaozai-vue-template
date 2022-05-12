@@ -29,7 +29,7 @@ export default {
   created() {},
 };
 </script>
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .container {
   position: relative;
   .setting-container {

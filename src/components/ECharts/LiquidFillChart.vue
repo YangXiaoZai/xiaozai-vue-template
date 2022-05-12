@@ -102,7 +102,7 @@ export default {
   },
 };
 </script>
-<style lang="less" scope>
+<style lang="less" scoped>
 .liquid-chart-container {
   position: relative;
   .liquid-chart-title {
