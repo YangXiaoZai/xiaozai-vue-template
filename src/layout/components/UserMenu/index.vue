@@ -19,7 +19,7 @@
         <a-menu slot="overlay">
           <a-menu-item> <router-link to="/user">个人中心 </router-link></a-menu-item>
           <a-menu-item>
-            <a href="https://github.com/YangXiaoZai/xiaozai-vue-template" target="_blank">仓库地址 </a>
+            <a :href="GITHUB_PROJECT" target="_blank">仓库地址 </a>
           </a-menu-item>
           <a-menu-item @click="logout"> 退出登录 </a-menu-item>
         </a-menu>
@@ -30,6 +30,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { GITHUB_PROJECT } from '@/utils/repositories';
 export default {
   data() {
     return {
@@ -37,6 +38,7 @@ export default {
       fullscreen: false,
 
       fileBaseUrl: process.env.VUE_APP_FILE_BASE_URL,
+      GITHUB_PROJECT,
     };
   },
   computed: {

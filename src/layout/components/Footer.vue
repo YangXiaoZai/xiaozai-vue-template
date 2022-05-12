@@ -1,30 +1,20 @@
 <!-- footer -->
 <template>
-  <div class="container">footer</div>
+  <a-space class="flex-center" size="large">
+    <a :href="GITHUB_PROJECT" target="_black">©{{ new Date().getFullYear() }} xiaozai-vue-template</a>
+    <span>杨小在 免费开源</span>
+  </a-space>
 </template>
 
 <script>
+import { GITHUB_PROJECT } from '@/utils/repositories';
 export default {
   components: {},
   data() {
-    return {};
+    return {
+      GITHUB_PROJECT,
+    };
   },
-  computed: {},
-  // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
-  // 生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
-  beforeCreate() {}, // 生命周期 - 创建之前
-  beforeMount() {}, // 生命周期 - 挂载之前
-  beforeUpdate() {}, // 生命周期 - 更新之前
-  updated() {}, // 生命周期 - 更新之后
-  beforeDestroy() {}, // 生命周期 - 销毁之前
-  destroyed() {}, // 生命周期 - 销毁完成
-  activated() {}, // 如果页面有keep-alive缓存功能，这个函数会触发
-  methods: {},
 };
 </script>
-<style lang="less" scoped>
-.container {
-}
-</style>
+<style lang="less" scoped></style>
