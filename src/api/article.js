@@ -3,7 +3,6 @@ import request from '@/utils/request';
 // 获取文章类型
 export function getArticleType() {
   return request({
-    // url: '/api/v1/article/type',
     url: '/api/v1/articleType',
     method: 'get',
   });

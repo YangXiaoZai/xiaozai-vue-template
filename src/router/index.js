@@ -12,8 +12,6 @@ Vue.use(Router);
 
 // 路由使用前必读！！！
 /**
- * Note: sub-menu only appear when route children.length >= 1
- * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
  *
  * hidden: true                   if set true, item will not show in the sidebar(default is false)
  * alwaysShow: true               if set true, will always show the root menu
@@ -123,7 +121,7 @@ export const asyncRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/test1/index.vue'),
+        component: () => import('@/views/test/index.vue'),
         meta: {
           title: '主题修改',
           breadcrumb: false,
