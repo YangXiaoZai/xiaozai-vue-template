@@ -8,7 +8,7 @@ function resolve(dir) {
 const name = defaultSettings.title;
 
 module.exports = {
-  publicPath: '/', // 默认情况部署到根目录，如需要部署到/app/目录下，则设置为/app/
+  publicPath: './', // 默认情况部署到根目录，如需要部署到/app/目录下，则设置为/app/
   outputDir: 'dist', //build之后打包到的目录,
   assetsDir: 'static', //打包后的静态资源的目录，放在outputDir目录下,
   lintOnSave: process.env.NODE_ENV === 'development', //仅在develop环境中
