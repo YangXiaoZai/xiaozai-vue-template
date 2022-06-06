@@ -83,10 +83,6 @@ export default {
         if (valid) {
           this.loading = true;
 
-          // 没有后台API支持，可暂时如此
-          // setToken('admin');
-          // this.$router.push(this.redirect || '/');
-
           let params = {
             ...this.loginFrom,
             password: md5(this.loginFrom.password),
@@ -95,7 +91,7 @@ export default {
             .dispatch('user/login', params)
             .then(() => {
               this.$message.success('登录成功');
-              this.$router.push(this.redirect || '/');
+              this.$router.push({ path: this.redirect || '/' }, () => {});
             })
             .finally(() => {
               this.loading = false;
