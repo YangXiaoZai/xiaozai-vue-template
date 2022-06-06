@@ -8,7 +8,7 @@ root = true
 charset = utf-8
 
 # 缩进风格，可选 space、tab
-indent_style = tab
+indent_style = space
 
 # 缩进的空格数，当 indent_style = tab 将使用 tab_width
 # 否则使用 indent_size

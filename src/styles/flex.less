@@ -1,0 +1,78 @@
+@charset 'utf-8';
+
+// 主要为flex布局常用
+
+//纵向布局
+.flex-col {
+  flex-direction: column;
+}
+
+//横向翻转布局
+.flex-row-r {
+  flex-direction: row-reverse;
+}
+
+/*两边对齐弹性布局*/
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*间隔相等弹性布局*/
+.flex-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/*水平居中*/
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*弹性布局从头排*/
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/*弹性布局从尾排*/
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/*弹性布局项目缩放*/
+.flex-grow {
+  flex-grow: 1;
+}
+
+.flex-shrink {
+  flex-shrink: 0;
+}
+
+/*弹性布局换行*/
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+/*弹性布局文字不换行，溢出显示...*/
+.flex-1 {
+  flex: 1;
+  overflow: hidden;
+}
+
+//项目顶部对齐
+.align-start {
+  align-self: flex-start;
+}
+
+//项目尾部对齐
+.align-end {
+  align-self: flex-end;
+}

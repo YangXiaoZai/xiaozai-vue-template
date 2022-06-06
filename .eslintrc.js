@@ -1,16 +1,27 @@
 module.exports = {
   root: true,
-  env: {
-    node: true,
-  },
-  extends: ['plugin:vue/essential', '@vue/airbnb'],
-  // plugins: ['prettier'],
+  parser: 'vue-eslint-parser',
   parserOptions: {
     parser: 'babel-eslint',
+    ecmaVersion: 12,
+    sourceType: 'module',
   },
-  rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    // 'prettier/prettier': 'error',
+  extends: [
+    'eslint:recommended', // eslint 官方推荐
+    'plugin:vue/recommended', // vue 官方推荐
+    'plugin:prettier/recommended', // 使用 prettier
+  ],
+  plugins: ['vue'],
+  env: {
+    node: true,
+    browser: true,
+    es6: true,
+  },
+  rules: {},
+  globals: {
+    // 高德地图
+    AMap: true,
+    Loca: true,
+    map: true,
   },
 };

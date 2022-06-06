@@ -1,0 +1,15 @@
+@charset 'utf-8';
+
+// 主要为修改antd默认的一些样式
+
+// fix: button的type为link时存在外边线
+.ant-btn.ant-btn-link:focus,
+.ant-btn.ant-btn-link:hover{
+  border:1px solid transparent !important;
+}
+
+// fix:日历当日依旧为蓝色
+.ant-calendar-today .ant-calendar-date{
+  color:unset !important;
+  border:0 !important;
+}

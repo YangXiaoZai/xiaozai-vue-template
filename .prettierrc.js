@@ -1,15 +1,41 @@
 module.exports = {
-  printWidth: 80, // （默认值）单行代码超出 80 个字符自动换行
-  tabWidth: 2, // （默认值）一个 tab 键缩进相当于 2 个空格
-  useTabs: true, // 行缩进使用 tab 键代替空格
-  semi: true, // （默认值）语句的末尾加上分号
-  singleQuote: true, // 使用单引号
-  quoteProps: 'as-needed', // （默认值）仅仅当必须的时候才会加上双引号
-  jsxSingleQuote: true, // 在 JSX 中使用单引号
-  trailingComma: 'all', // 不用在多行的逗号分隔的句法结构的最后一行的末尾加上逗号
-  bracketSpacing: true, // （默认值）在括号和对象的文字之间加上一个空格
-  jsxBracketSameLine: true, // 把 > 符号放在多行的 JSX 元素的最后一行
-  arrowParens: 'avoid', // 当箭头函数中只有一个参数的时候可以忽略括弧
-  vueIndentScriptAndStyle: false, // （默认值）对于 .vue 文件，不缩进 <script> 和 <style> 里的内容
-  embeddedLanguageFormatting: 'off', // 不允许格式化内嵌的代码块，比如 markdown  文件里的代码块
+  // 一行最多 120 字符
+  printWidth: 120,
+  // 使用 2 个空格缩进
+  tabWidth: 2,
+  // 不使用缩进符，而使用空格
+  useTabs: false,
+  // 行尾需要有分号
+  semi: true,
+  // 使用单引号
+  singleQuote: true,
+  // 对象的 key 仅在必要时用引号
+  quoteProps: 'as-needed',
+  // jsx 不使用单引号，而使用双引号
+  jsxSingleQuote: false,
+  // 末尾需要有逗号
+  trailingComma: 'all',
+  // 大括号内的首尾需要空格
+  bracketSpacing: true,
+  // jsx 标签的反尖括号需要换行
+  bracketSameLine: false,
+  // 箭头函数，只有一个参数的时候，也需要括号
+  arrowParens: 'always',
+  // 每个文件格式化的范围是文件的全部内容
+  rangeStart: 0,
+  rangeEnd: Infinity,
+  // 不需要写文件开头的 @prettier
+  requirePragma: false,
+  // 不需要自动在文件开头插入 @prettier
+  insertPragma: false,
+  // 使用默认的折行标准
+  proseWrap: 'preserve',
+  // 根据显示样式决定 html 要不要折行
+  htmlWhitespaceSensitivity: 'css',
+  // vue 文件中的 script 和 style 内不用缩进
+  vueIndentScriptAndStyle: false,
+  // 换行符使用 lf
+  endOfLine: 'lf',
+  // 格式化内嵌代码
+  embeddedLanguageFormatting: 'auto',
 };
