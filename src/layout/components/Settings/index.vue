@@ -30,7 +30,6 @@
           </a-tooltip>
         </div>
 
-        <!-- TODO动态修改主题色 -->
         <div class="conditions-item">
           <p>主题色</p>
           <a-tooltip v-for="item in colorList" :key="item.key">
@@ -65,6 +64,14 @@
             </div>
           </a-tooltip>
         </div>
+
+        <a-divider></a-divider>
+
+        <a-space direction="vertical">
+          <a-alert message="此配置栏仅在开发环境显示，生产环境默认隐藏" banner />
+          <a-alert message="请将配置拷贝到@/settings.js文件" banner />
+          <a-button type="primary" block @click="copySettings">拷贝配置</a-button>
+        </a-space>
       </div>
     </a-drawer>
   </div>
@@ -85,6 +92,7 @@ export default {
   },
   computed: {
     ...mapState({
+      title: (state) => state.settings.title,
       mode: (state) => state.settings.navigationMode,
       pageStyle: (state) => state.settings.pageStyle,
       themeColor: (state) => state.settings.themeColor,
@@ -104,6 +112,18 @@ export default {
     updateTheme(newPrimaryColor) {
       themeColor.changeColor(newPrimaryColor).finally(() => {
         this.$message.loading('正在切换主题', 1);
+      });
+    },
+    copySettings() {
+      const text = `module.exports = {
+        title:'${this.title || '后台管理系统'}',
+        pageStyle:'${this.pageStyle}',
+        themeColor: '${this.themeColor}',
+        navigationMode: '${this.mode}',
+      };`;
+
+      this.$CopyText(text).then(() => {
+        this.$message.success('拷贝成功，请前往@/settings.js配置');
       });
     },
   },

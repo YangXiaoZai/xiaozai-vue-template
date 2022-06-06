@@ -38,7 +38,7 @@ export default {
   },
   computed: {
     ...mapState({
-      title: (state) => state.settings.title,
+      title: (state) => state.settings.title || '后台管理系统',
       pageStyle: (state) => state.settings.pageStyle,
       mode: (state) => state.settings.navigationMode,
     }),

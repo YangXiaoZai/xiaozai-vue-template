@@ -37,6 +37,11 @@ import './styles/index.scss'; // global css
 
 import './permission'; // 引用permission
 
+// import CopyText
+import CopyText from './utils/copy.js';
+
+Vue.use(CopyText);
+
 Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示。
 
 // vue prototype

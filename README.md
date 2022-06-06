@@ -64,6 +64,7 @@ XiaoZai Vue Template 是一个常用的后台管理系统
 - [x] 综合实例
 - [x] Dashboard
 - [x] ECharts 图表
+- [x] Clipboard(剪贴复制)
 
 
 #### 待开发项
@@ -82,6 +83,7 @@ XiaoZai Vue Template 是一个常用的后台管理系统
   - [ ] 动态表格
   - [ ] 拖拽表格
   - [ ] 内联编辑
+
 - [ ] 组件
   - [ ] 拖拽Dialog
   - [ ] 拖拽Select
@@ -99,7 +101,6 @@ XiaoZai Vue Template 是一个常用的后台管理系统
   - [ ] 资源管理
   - [ ] 部门管理
 
-- [ ] Clipboard(剪贴复制)
 - [ ] Markdown2html
 - [ ] 引导页
 - [ ] 大屏
