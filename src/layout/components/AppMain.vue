@@ -32,7 +32,7 @@ export default {
   methods: {},
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .app-container {
   padding: 24px;
 }

@@ -57,7 +57,7 @@ export default {
   methods: {},
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 // 动画
 .sidebarLogoFade-enter-active {
   transition: opacity 0.8s;

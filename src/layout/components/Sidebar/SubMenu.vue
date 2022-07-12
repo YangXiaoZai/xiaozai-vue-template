@@ -67,7 +67,7 @@ export default {
   methods: {},
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .container {
 }
 </style>
