@@ -95,9 +95,12 @@ export default {
     .user-avatar {
       width: 40px;
       height: 40px;
-      font-size: 40px;
+      font-size: 20px;
       border-radius: 50%;
       margin-right: 6px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
