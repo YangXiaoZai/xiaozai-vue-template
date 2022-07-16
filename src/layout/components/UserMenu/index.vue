@@ -12,7 +12,7 @@
 
       <a-dropdown>
         <div class="user-info">
-          <img v-if="userInfo.avatar" :src="fileBaseUrl + userInfo.avatar" alt="用户头像" class="user-avatar" />
+          <img v-if="userInfo.avatar" :src="fileBaseUrl + userInfo.avatar" class="user-avatar" />
           <a-icon v-else type="user" class="user-avatar" />
           <span>{{ userInfo.nickname || '昵称' }}</span>
         </div>
@@ -101,6 +101,7 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+      border: 1px solid transparent;
     }
   }
 }
