@@ -45,7 +45,7 @@ export default {
   created() {},
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .layout-container {
   height: 100vh;
   .layout-header {

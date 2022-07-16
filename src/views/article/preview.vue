@@ -9,7 +9,7 @@
             {{ article.updatedAt }}
           </span>
         </div>
-        <div class="content" v-html="article.content"></div>
+        <div class="rich-text-detail-content" v-html="article.content"></div>
       </a-col>
     </a-row>
   </div>
@@ -62,10 +62,13 @@ export default {
     opacity: 0.5;
     text-align: center;
   }
-  .content {
+  .rich-text-detail-content {
     min-height: 750px;
     // overflow-y: scroll;
     margin-top: 15px;
+    /deep/ img {
+      max-width: 100%;
+    }
   }
 }
 </style>

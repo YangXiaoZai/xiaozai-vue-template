@@ -130,7 +130,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .container {
   .handle-item {
     width: 48px;
@@ -144,7 +144,7 @@ export default {
   }
 }
 </style>
-<style lang="scss">
+<style lang="less">
 .setting-drawer {
   .conditions-item {
     margin-top: 10px;

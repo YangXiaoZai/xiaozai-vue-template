@@ -104,7 +104,7 @@ export default {
   }, // 如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .container {
   width: 100vw;
   height: 100vh;

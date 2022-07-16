@@ -33,8 +33,6 @@ Vue.use(Antd);
 // import animate.css
 import 'animate.css';
 
-import './styles/index.scss'; // global css
-
 import './permission'; // 引用permission
 
 // import CopyText
