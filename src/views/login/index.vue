@@ -121,5 +121,8 @@ export default {
     background: rgba(0, 0, 0, 0.4);
     padding: 60px 30px;
   }
+  .font-28 {
+    font-size: 28px;
+  }
 }
 </style>
