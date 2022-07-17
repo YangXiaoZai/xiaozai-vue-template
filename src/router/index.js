@@ -188,7 +188,7 @@ export const asyncRoutes = [
 
 const createRouter = () =>
   new Router({
-    // mode: 'history', // 需要服务器配置
+    mode: 'history',
     scrollBehavior: () => ({
       y: 0,
     }),
