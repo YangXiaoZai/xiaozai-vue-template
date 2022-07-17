@@ -15,18 +15,18 @@ module.exports = {
   productionSourceMap: false, //生产环境取消source map,加快构建速度
   devServer: {
     // 解决跨域
-    proxy: {
-      '/api': {
-        // 目标路径
-        target: 'https://space.bilibili.com/',
-        // 允许跨域
-        changeOrigin: true,
-        // 重写路径
-        pathRewrite: {
-          '^/api': '',
-        },
-      },
-    },
+    // proxy: {
+    // '/api': {
+    //   // 目标路径
+    //   target: 'https://space.bilibili.com/',
+    //   // 允许跨域
+    //   changeOrigin: true,
+    //   // 重写路径
+    //   pathRewrite: {
+    //     '^/api': '',
+    //   },
+    // },
+    // },
   },
   css: {
     loaderOptions: {
